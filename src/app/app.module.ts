@@ -7,13 +7,35 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from "@angular/material";
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatGridListModule } from "@angular/material";
 import { NavbarComponent } from './navbar/navbar.component';
+import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
+
+import { RouterModule, Routes } from '@angular/router';
+import { BudgeterComponent } from './budgeter/budgeter.component';
+
+const appRoutes: Routes = [
+  { path: 'welcome-card', component: WelcomeCardComponent },
+  { path: 'navbar', component: NavbarComponent },
+  { path: 'budgeter', component: BudgeterComponent },
+  // {
+  //   path: 'heroes',
+  //   component: HeroListComponent,
+  //   data: { title: 'Heroes List' }
+  // },
+  // { path: '',
+  //   redirectTo: '/heroes',
+  //   pathMatch: 'full'
+  // },
+   { path: '**', component: WelcomeCardComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    WelcomeCardComponent,
+    BudgeterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +47,13 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
