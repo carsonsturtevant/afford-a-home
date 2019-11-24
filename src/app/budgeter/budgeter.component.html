@@ -3,34 +3,34 @@
   <div class="inputs-container">
     <div class="input-item">
       <h3>Home Price</h3>
-      <input #box (keyup)="onKeyHomePrice(box.value)">
+      <input #homePrice value="480533"  (keyup)="onKeyHomePrice(homePrice.value)">
     </div>
     <div class="input-item">
       <h3>Down Payment (%)</h3>
-      <input (keyup)="onKeyDownPayment(box.value)">
+      <input #downPayment value="5" (keyup)="onKeyDownPayment(downPayment.value)">
     </div>
     <div class="input-item">
       <h3>Interest Rate (%)</h3>
-      <input (keyup)="onKeyInterestRate(box.value)">
+      <input #interest value="3.5" (keyup)="onKeyInterestRate(interest.value)">
     </div>
     <div class="input-item">
       <h3>Taxes (%)</h3>
-      <input (keyup)="onKeyTaxes(box.value)">
+      <input #taxes value=".75" (keyup)="onKeyTaxes(taxes.value)">
     </div>
     <div class="input-item">
       <h3>Insurance</h3>
-      <input (keyup)="onKeyDownPayment(box.value)">
+      <input #insurance value="77.5" (keyup)="onKeyInsurance(insurance.value)">
     </div>
     <div class="input-item">
       <h3>HOA</h3>
-      <input (keyup)="onKeyHoa(box.value)">
+      <input #hoa value="175" (keyup)="onKeyHoa(hoa.value)">
     </div>
     <div class="input-item">
       <h3>PMI</h3>
-      <input (keyup)="onKeyPmi(box.value)">
+      <input #pmi value="0" (keyup)="onKeyPmi(pmi.value)">
   </div>
   </div>
-  <h2>Your monthly payment: </h2>
+  <h2>Your monthly payment: {{monthlyPayment}}</h2>
   <h2>Incomes: </h2>
   <h2>Savings: </h2>
   <h2>Expenses: </h2>
