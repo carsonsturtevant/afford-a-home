@@ -1,3 +1,37 @@
-<p>
-  budgeter works!
-</p>
+<div class="container">
+  <h2>Enter your home information:</h2>
+  <div class="inputs-container">
+    <div class="input-item">
+      <h3>Home Price</h3>
+      <input #box (keyup)="onKeyHomePrice(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>Down Payment (%)</h3>
+      <input (keyup)="onKeyDownPayment(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>Interest Rate (%)</h3>
+      <input (keyup)="onKeyInterestRate(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>Taxes (%)</h3>
+      <input (keyup)="onKeyTaxes(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>Insurance</h3>
+      <input (keyup)="onKeyDownPayment(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>HOA</h3>
+      <input (keyup)="onKeyHoa(box.value)">
+    </div>
+    <div class="input-item">
+      <h3>PMI</h3>
+      <input (keyup)="onKeyPmi(box.value)">
+  </div>
+  </div>
+  <h2>Your monthly payment: </h2>
+  <h2>Incomes: </h2>
+  <h2>Savings: </h2>
+  <h2>Expenses: </h2>
+</div>

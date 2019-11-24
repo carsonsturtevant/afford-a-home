@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgeterComponent implements OnInit {
 
+  homePrice: number;
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onKeyHomePrice(value: number) {
+    this.homePrice = value;
   }
 
 }
