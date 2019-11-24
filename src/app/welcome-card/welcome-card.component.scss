@@ -2,7 +2,23 @@
     margin: 20px;
 }
 
+.card-row {
+    height: 80vh;
+}
+
+h1 {
+    flex: 1;
+}
+
+h2 {
+    flex: 1;
+}
+
+.footer-container {
+    margin: 20px;
+}
+
 .center {
     display: flex;
     justify-content: center;
-  }
+}

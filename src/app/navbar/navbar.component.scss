@@ -1,3 +1,13 @@
+mat-sidenav-container {
+  min-height: 92vh !important;
+  max-height: 92vh !important;
+}
+
+mat-toolbar-row {
+  min-height: 7vh !important;
+  max-height: 7vh !important;
+}
+
 .menu-spacer {
     flex: 1 1 auto;
   }
