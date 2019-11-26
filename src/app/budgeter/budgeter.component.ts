@@ -17,7 +17,7 @@ export class BudgeterComponent implements OnInit {
   insurance: number = 77.5;
   hoa: number = 175;
   pmi: number = 0;
-  monthlyPayment: number;
+  //monthlyPayment: number;
   
   constructor() { }
 
@@ -43,56 +43,64 @@ export class BudgeterComponent implements OnInit {
     this.downPaymentAmount = this.downPaymentPercent * this.homePrice;
   }
 
-  calculateMonthlyPayment() {
+  calculateMonthlyPayment() : number {
     this.calculateDownPaymentAmount();
     this.calculateInterestRateMonthlyPercent();
     this.calculateTaxesAmount();
     // if (this.homePrice == 0 || this.interestRatePercent == 0)
     //   this.monthlyPayment = 0;
-    // else
-      this.monthlyPayment = 
+    if (this.homePrice <= 0 || this.homePrice == undefined)
+      return null;
+    else
+      return (
         (this.homePrice - this.downPaymentAmount)
          * (this.interestRateMonthlyPercent * ((1 + this.interestRateMonthlyPercent) ** 360)) 
          / (((1 + this.interestRateMonthlyPercent) ** 360) - 1) 
-         + this.insurance 
-         + this.taxesAmount
-         + this.hoa 
-         + this.pmi;
+         + +this.insurance
+         + +this.taxesAmount
+         + +this.hoa
+         + +this.pmi
+      ); 
   }
 
-  onKeyHomePrice(value: number) {
-    this.homePrice = value;
-    this.calculateMonthlyPayment();
+  isNumber(value: string | number): boolean
+  {
+    return ((value != null) && !isNaN(Number(value.toString())));
   }
 
-  onKeyDownPayment(value: number) {
-    this.downPaymentPercent = value/100;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyHomePrice(value: number) {
+  //   this.homePrice = value;
+  //   this.calculateMonthlyPayment();
+  // }
 
-  onKeyInterestRate(value: number) {
-    this.interestRatePercent = value/100;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyDownPayment(value: number) {
+  //   this.downPaymentPercent = value/100;
+  //   this.calculateMonthlyPayment();
+  // }
 
-  onKeyTaxes(value: number) {
-    this.taxesPercent = value/100;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyInterestRate(value: number) {
+  //   this.interestRatePercent = value/100;
+  //   this.calculateMonthlyPayment();
+  // }
 
-  onKeyInsurance(value: number) {
-    this.insurance = value;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyTaxes(value: number) {
+  //   this.taxesPercent = value/100;
+  //   this.calculateMonthlyPayment();
+  // }
 
-  onKeyHoa(value: number) {
-    this.hoa = value;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyInsurance(value: number) {
+  //   this.insurance = value;
+  //   this.calculateMonthlyPayment();
+  // }
 
-  onKeyPmi(value: number) {
-    this.pmi = value;
-    this.calculateMonthlyPayment();
-  }
+  // onKeyHoa(value: number) {
+  //   this.hoa = value;
+  //   this.calculateMonthlyPayment();
+  // }
+
+  // onKeyPmi(value: number) {
+  //   this.pmi = value;
+  //   this.calculateMonthlyPayment();
+  // }
 
 }

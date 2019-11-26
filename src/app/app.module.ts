@@ -14,6 +14,8 @@ import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BudgeterComponent } from './budgeter/budgeter.component';
 
+import { FormsModule } from '@angular/forms';
+
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
   { path: 'navbar', component: NavbarComponent },
@@ -50,6 +52,7 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
