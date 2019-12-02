@@ -1,11 +1,15 @@
 mat-sidenav-container {
-  min-height: 92vh !important;
-  max-height: 92vh !important;
+  min-height: 85vh !important;
+  max-height: 85vh !important;
+}
+
+mat-toolbar {
+  min-height: 15vh !important;
+  max-height: 15vh !important;
 }
 
 mat-toolbar-row {
-  min-height: 7vh !important;
-  max-height: 7vh !important;
+  height: inherit;
 }
 
 .menu-spacer {
@@ -15,4 +19,22 @@ mat-toolbar-row {
 a {
   text-decoration: none;
   color: white;
+}
+
+.main-container {
+  padding: 20px;
+}
+
+.nav-bar-item {
+  height: 15vh;
+  position: relative;
+  border: 3px solid green;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }

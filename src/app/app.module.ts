@@ -15,6 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BudgeterComponent } from './budgeter/budgeter.component';
 
 import { FormsModule } from '@angular/forms';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
   //   redirectTo: '/heroes',
   //   pathMatch: 'full'
   // },
-   { path: '**', component: WelcomeCardComponent }
+   { path: '**', component: HomepageComponent }
 ];
 
 @NgModule({
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     WelcomeCardComponent,
-    BudgeterComponent
+    BudgeterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
