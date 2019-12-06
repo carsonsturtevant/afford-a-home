@@ -6,10 +6,17 @@ mat-sidenav-container {
 mat-toolbar {
   min-height: 15vh !important;
   max-height: 15vh !important;
+  color: white;
 }
 
 mat-toolbar-row {
   height: inherit;
+}
+
+.main-title {
+  font-size: 22pt;
+  color: black;
+  font-family: 'Montserrat Subrayada', sans-serif;
 }
 
 .menu-spacer {
@@ -22,13 +29,12 @@ a {
 }
 
 .main-container {
-  padding: 20px;
+  padding: -8px !important;
 }
 
 .nav-bar-item {
   height: 15vh;
   position: relative;
-  border: 3px solid green;
 }
 
 .vertical-center {
@@ -37,4 +43,10 @@ a {
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.settings-button {
+  font-size: 12pt;
+  color: black !important;
+  font-family: 'Montserrat', sans-serif;
 }
