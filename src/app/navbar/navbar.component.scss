@@ -9,6 +9,15 @@ mat-toolbar {
   color: white;
 }
 
+mat-sidenav {
+  background-color: white;
+}
+
+.mat-icon-button {
+  background-color: transparent;
+  margin-right: 5px;
+}
+
 mat-toolbar-row {
   height: inherit;
 }
