@@ -2,7 +2,7 @@
   <mat-card>
     <div class="mat-headline">Let's start by determining how much house you can afford:</div>
     <mat-form-field>
-      <input [(ngModel)]="yearlySalary" matInput placeholder="Yearly Salary">
+      <input type="text" [(ngModel)]="formattedSalary" (blur)="formatSalary($event)" matInput placeholder="Yearly Salary">
     </mat-form-field>
     <div *ngIf="yearlySalary">
       <div class="mat-title" style="margin-bottom: 0">You can afford up to ${{suggestedMonthlyPayment() | number:'1.0-0'}} per month.</div>
@@ -18,7 +18,7 @@
       <input [(ngModel)]="homePrice" matInput required placeholder="Home Price">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="downPaymentPercent" matInput required placeholder="Down Payment (%)">
+      <input [(ngModel)]="downPaymentPercent" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
     </mat-form-field>
     <mat-form-field>
       <input [(ngModel)]="interestRatePercent" matInput required placeholder="Interest Rate (%)">

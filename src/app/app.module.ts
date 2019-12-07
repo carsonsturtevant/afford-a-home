@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './modules/material/material.module';
@@ -13,7 +14,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
 import { BudgeterComponent } from './budgeter/budgeter.component';
 import { HomepageComponent } from './homepage/homepage.component';
-
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
@@ -51,7 +51,9 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

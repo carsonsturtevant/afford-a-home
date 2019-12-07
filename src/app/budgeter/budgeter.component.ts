@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'budgeter',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class BudgeterComponent implements OnInit {
 
   yearlySalary: number;
+  formattedSalary: string;
   homePrice: number;
   downPaymentPercent: number;
   interestRatePercent: number;
@@ -16,10 +18,15 @@ export class BudgeterComponent implements OnInit {
   hoa: number;
   pmi: number;
   
-  constructor() { }
+  constructor(private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
     this.calculateMonthlyPayment();
+  }
+
+  formatSalary(element) {
+    this.yearlySalary = element.target.value.replace(/\D/g,'');
+    this.formattedSalary = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
   }
 
   suggestedMonthlyPayment(): number {
