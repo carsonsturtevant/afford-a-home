@@ -3,7 +3,7 @@
 }
 
 .main-background {
-    background-image: url("../../assets/main-background.jpg");
+    //background-image: url("../../assets/main-background.jpg");
     margin: 0;
 }
 
@@ -13,14 +13,12 @@ h1 {
     width: 65%;
     margin: auto;
     padding-top: 15%;
-    color: white;
     font-family: 'Montserrat', sans-serif;
 }
 
 h2 {
     flex: 1;
     font-size: 16pt;
-    color: lightgray;
     font-family: 'Montserrat', sans-serif;
 }
 

@@ -1,21 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material/material.module';
 
-import { MatSliderModule } from '@angular/material/slider';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatCardModule, MatGridListModule } from "@angular/material";
+import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
-
-import { RouterModule, Routes } from '@angular/router';
 import { BudgeterComponent } from './budgeter/budgeter.component';
-
-import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
+
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
@@ -45,15 +43,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSliderModule,
     FlexLayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
+    MaterialModule,
     FormsModule,
     RouterModule.forRoot(
       appRoutes,
