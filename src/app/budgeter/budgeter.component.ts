@@ -8,18 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class BudgeterComponent implements OnInit {
 
   yearlySalary: number;
-
-  homePrice: number = 480533;
-  downPaymentPercent: number = .05;
-  downPaymentAmount: number = 24026.65;
-  interestRatePercent: number = .035;
-  interestRateMonthlyPercent: number = .0029;
-  taxesPercent: number = .0075;
-  taxesAmount: number = 0;
-  insurance: number = 77.5;
-  hoa: number = 175;
-  pmi: number = 0;
-  //monthlyPayment: number;
+  homePrice: number;
+  downPaymentPercent: number;
+  interestRatePercent: number;
+  taxesPercent: number;
+  insurance: number;
+  hoa: number;
+  pmi: number;
   
   constructor() { }
 
@@ -31,82 +26,51 @@ export class BudgeterComponent implements OnInit {
     return (this.yearlySalary * .28 / 12);
   }
 
-  calculateTaxesAmount() {
-    if (this.taxesPercent == 0 || this.homePrice == 0) 
-      this.taxesAmount = 0;
-    else
-      this.taxesAmount = this.taxesPercent * this.homePrice / 12;
-  }
-
-  calculateInterestRateMonthlyPercent() {
-    if (this.interestRatePercent == 0)
-      this.interestRateMonthlyPercent = 0;
-    else
-      this.interestRateMonthlyPercent = this.interestRatePercent / 12;
-  }
-
-  calculateDownPaymentAmount() {
-    this.downPaymentAmount = this.downPaymentPercent * this.homePrice;
-  }
-
   calculateMonthlyPayment() : number {
-    this.calculateDownPaymentAmount();
-    this.calculateInterestRateMonthlyPercent();
-    this.calculateTaxesAmount();
-    // if (this.homePrice == 0 || this.interestRatePercent == 0)
-    //   this.monthlyPayment = 0;
+    var dp: number = this.calculateDownPaymentAmount();
+    var ir: number = this.calculateInterestRateMonthlyPercent();
+    var tax: number = this.calculateTaxesAmount();
+    var ins: number = 0;
+    if(this.insurance !== undefined) ins = this.insurance;
+    var hoa: number = 0;
+    if(this.hoa !== undefined) hoa = this.hoa;
+    var pmi: number = 0;
+    if(this.pmi !== undefined) pmi = this.pmi;
+
     if (this.homePrice <= 0 || this.homePrice == undefined)
       return null;
     else
       return (
-        (this.homePrice - this.downPaymentAmount)
-         * (this.interestRateMonthlyPercent * ((1 + this.interestRateMonthlyPercent) ** 360)) 
-         / (((1 + this.interestRateMonthlyPercent) ** 360) - 1) 
-         + +this.insurance
-         + +this.taxesAmount
-         + +this.hoa
-         + +this.pmi
+        (this.homePrice - dp)
+         * (ir * ((1 + ir) ** 360)) 
+         / (((1 + ir) ** 360) - 1) 
+         + +tax
+         + +ins
+         + +hoa
+         + +pmi
       ); 
+  }
+
+  calculateTaxesAmount(): number {
+    if (this.taxesPercent === undefined || this.taxesPercent == 0 || this.homePrice == 0) 
+      return 0;
+    else
+      return this.taxesPercent * this.homePrice / 12;
+  }
+
+  calculateInterestRateMonthlyPercent(): number {
+    if (this.interestRatePercent == 0)
+      return 0;
+    else
+      return this.interestRatePercent / 12;
+  }
+
+  calculateDownPaymentAmount(): number {
+    return this.downPaymentPercent * this.homePrice;
   }
 
   isNumber(value: string | number): boolean
   {
     return ((value != null) && !isNaN(Number(value.toString())));
   }
-
-  // onKeyHomePrice(value: number) {
-  //   this.homePrice = value;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyDownPayment(value: number) {
-  //   this.downPaymentPercent = value/100;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyInterestRate(value: number) {
-  //   this.interestRatePercent = value/100;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyTaxes(value: number) {
-  //   this.taxesPercent = value/100;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyInsurance(value: number) {
-  //   this.insurance = value;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyHoa(value: number) {
-  //   this.hoa = value;
-  //   this.calculateMonthlyPayment();
-  // }
-
-  // onKeyPmi(value: number) {
-  //   this.pmi = value;
-  //   this.calculateMonthlyPayment();
-  // }
-
 }
