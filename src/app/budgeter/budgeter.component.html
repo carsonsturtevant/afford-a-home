@@ -1,62 +1,64 @@
 <div class="container">
-  <h2>Let's start by determining how much house you can afford:</h2>
-  <mat-form-field>
-    <input matInput placeholder="Yearly Salary">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-      <mat-option value="option">Option2</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <mat-card>
+    <div class="mat-headline">Let's start by determining how much house you can afford:</div>
+    <mat-form-field>
+      <input [(ngModel)]="yearlySalary" matInput placeholder="Yearly Salary">
+    </mat-form-field>
+    <div *ngIf="yearlySalary">
+      <div class="mat-title" style="margin-bottom: 0">You can afford up to {{suggestedMonthlyPayment() | number:'1.0-0'}} per month.</div>
+      <div class="body-1">*This is based on the suggested limit of 28% of income used for housing.</div>
+    </div>
+  </mat-card>
 </div>
 
 <div class="container">
-  <h2>Enter your home information:</h2>
-  <div class="inputs-container">
+  <mat-card>
+    <h2>Enter your home information:</h2>
+    <div class="inputs-container">
 
-    <div class="input-item">
-      <h3>Home Price</h3>
-      <input [(ngModel)]="homePrice" value="homePrice" #homePriceInput required (input)="homePrice = $event.target.value">
-      <div class="red-text" *ngIf="homePrice == 0 || homePrice < 0 || !isNumber(homePrice)">
-        Home price is required, cannot be zero, and must be a positive number.
+      <div class="input-item">
+        <h3>Home Price</h3>
+        <input [(ngModel)]="homePrice" value="homePrice" #homePriceInput required (input)="homePrice = $event.target.value">
+        <div class="red-text" *ngIf="homePrice == 0 || homePrice < 0 || !isNumber(homePrice)">
+          Home price is required, cannot be zero, and must be a positive number.
+        </div>
       </div>
-    </div>
 
-    <div class="input-item">
-      <h3>Down Payment (%)</h3>
-      <input [(ngModel)]="downPaymentPercent" value="downPaymentPercent" #downPaymentPercentInput (input)="downPaymentPercent = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>Down Payment (%)</h3>
+        <input [(ngModel)]="downPaymentPercent" value="downPaymentPercent" #downPaymentPercentInput (input)="downPaymentPercent = $event.target.value">
+      </div>
 
-    <div class="input-item">
-      <h3>Interest Rate (%)</h3>
-      <input [(ngModel)]="interestRatePercent" value="interestRatePercent" #interestRatePercentInput (input)="interestRatePercent = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>Interest Rate (%)</h3>
+        <input [(ngModel)]="interestRatePercent" value="interestRatePercent" #interestRatePercentInput (input)="interestRatePercent = $event.target.value">
+      </div>
 
-    <div class="input-item">
-      <h3>Taxes (%)</h3>
-      <input [(ngModel)]="taxesPercent" value="taxesPercent" #taxesPercentInput (input)="taxesPercent = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>Taxes (%)</h3>
+        <input [(ngModel)]="taxesPercent" value="taxesPercent" #taxesPercentInput (input)="taxesPercent = $event.target.value">
+      </div>
 
-    <div class="input-item">
-      <h3>Insurance</h3>
-      <input [(ngModel)]="insurance" value="insurance" #insuranceInput (input)="insurance = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>Insurance</h3>
+        <input [(ngModel)]="insurance" value="insurance" #insuranceInput (input)="insurance = $event.target.value">
+      </div>
 
-    <div class="input-item">
-      <h3>HOA</h3>
-      <input [(ngModel)]="hoa" value="hoa" #hoaInput (input)="hoa = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>HOA</h3>
+        <input [(ngModel)]="hoa" value="hoa" #hoaInput (input)="hoa = $event.target.value">
+      </div>
 
-    <div class="input-item">
-      <h3>PMI</h3>
-      <input [(ngModel)]="pmi" value="pmi" #pmiInput (input)="pmi = $event.target.value">
-    </div>
+      <div class="input-item">
+        <h3>PMI</h3>
+        <input [(ngModel)]="pmi" value="pmi" #pmiInput (input)="pmi = $event.target.value">
+      </div>
 
-  </div>
-  <h2>Your monthly payment: ${{calculateMonthlyPayment() | number:'1.0-0'}}</h2>
-  <h2>Incomes: </h2>
+    </div>
+    <h2>Your monthly payment: ${{calculateMonthlyPayment() | number:'1.0-0'}}</h2>
+  </mat-card>
+
+  <!-- <h2>Incomes: </h2>
   <h2>Savings: </h2>
-  <h2>Expenses: </h2>
+  <h2>Expenses: </h2> -->
 </div>

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BudgeterComponent implements OnInit {
 
+  yearlySalary: number;
+
   homePrice: number = 480533;
   downPaymentPercent: number = .05;
   downPaymentAmount: number = 24026.65;
@@ -23,6 +25,10 @@ export class BudgeterComponent implements OnInit {
 
   ngOnInit() {
     this.calculateMonthlyPayment();
+  }
+
+  suggestedMonthlyPayment(): number {
+    return (this.yearlySalary * .28 / 12);
   }
 
   calculateTaxesAmount() {
