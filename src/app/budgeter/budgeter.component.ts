@@ -10,6 +10,8 @@ export class BudgeterComponent implements OnInit {
 
   yearlySalary: number;
   formattedSalary: string;
+  monthlyDebts: number;
+  formattedDebts: string;
   homePrice: number;
   downPaymentPercent: number;
   interestRatePercent: number;
@@ -24,13 +26,17 @@ export class BudgeterComponent implements OnInit {
     this.calculateMonthlyPayment();
   }
 
-  formatSalary(element) {
-    this.yearlySalary = element.target.value.replace(/\D/g,'');
-    this.formattedSalary = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
-  }
-
   suggestedMonthlyPayment(): number {
-    return (this.yearlySalary * .28 / 12);
+    var debts: number = 0;
+    if (this.monthlyDebts !== undefined) debts = this.monthlyDebts;
+
+    var thirtySixPercent: number = (this.yearlySalary * .36 / 12);
+    var twentyEightPercent: number = (this.yearlySalary * .28 / 12);
+
+    thirtySixPercent -= debts;
+    if (thirtySixPercent < twentyEightPercent)
+      return thirtySixPercent;
+    else return twentyEightPercent;
   }
 
   calculateMonthlyPayment() : number {
@@ -38,11 +44,11 @@ export class BudgeterComponent implements OnInit {
     var ir: number = this.calculateInterestRateMonthlyPercent();
     var tax: number = this.calculateTaxesAmount();
     var ins: number = 0;
-    if(this.insurance !== undefined) ins = this.insurance;
+    if (this.insurance !== undefined) ins = this.insurance;
     var hoa: number = 0;
-    if(this.hoa !== undefined) hoa = this.hoa;
+    if (this.hoa !== undefined) hoa = this.hoa;
     var pmi: number = 0;
-    if(this.pmi !== undefined) pmi = this.pmi;
+    if (this.pmi !== undefined) pmi = this.pmi;
 
     if (this.homePrice <= 0 || this.homePrice == undefined)
       return null;
@@ -76,8 +82,18 @@ export class BudgeterComponent implements OnInit {
     return this.downPaymentPercent * this.homePrice;
   }
 
-  isNumber(value: string | number): boolean
-  {
-    return ((value != null) && !isNaN(Number(value.toString())));
+  formatSalary(element) {
+    this.yearlySalary = element.target.value.replace(/\D/g,'');
+    this.formattedSalary = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
   }
+
+  formatDebts(element) {
+    this.monthlyDebts = element.target.value.replace(/\D/g,'');
+    this.formattedDebts = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
+  }
+
+  // isNumber(value: string | number): boolean
+  // {
+  //   return ((value != null) && !isNaN(Number(value.toString())));
+  // }
 }
