@@ -1,15 +1,25 @@
 <div class="container">
   <mat-card>
     <div class="mat-headline">Let's start by determining how much house you can afford:</div>
-    <mat-form-field>
-      <input type="text" [(ngModel)]="formattedSalary" (blur)="formatSalary($event)" matInput placeholder="Yearly Salary">
+    <mat-form-field autocomplete="false">
+      <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="formatSalary($event)" matInput required placeholder="Yearly Salary">
     </mat-form-field>
     <mat-form-field>
-      <input type="text" [(ngModel)]="formattedDebts" (blur)="formatDebts($event)" matInput placeholder="Monthly Debts" matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans.">
+      <input 
+        type="text" 
+        [(ngModel)]="monthlyDebtsFormatted" 
+        (blur)="formatDebts($event)" 
+        matInput 
+        placeholder="Monthly Debts" 
+        matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans."
+        matTooltipClass="tooltip">
     </mat-form-field>
     <div *ngIf="yearlySalary">
-      <div class="mat-title" style="margin-bottom: 0">You can afford up to ${{suggestedMonthlyPayment() | number:'1.0-0'}} per month.</div>
-      <div class="body-1">*This is based on the 28/36 personal finance guideline.</div>
+      <div class="mat-title" style="margin-bottom: 0">You can afford up to <span class="green">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
+      <div class="body-1">*Based on the 28/36 personal finance guideline.</div>
+      <br>
+      <div class="mat-title" style="margin-bottom: 0">Suggested Home Price: ${{suggestedHomePrice() | number:'1.0-0'}}</div>
+      <div class="body-1">*Assumed 20% down payment of ${{suggestedDownPayment() | number:'1.0-0'}}</div>
     </div>
   </mat-card>
 </div>
@@ -18,28 +28,28 @@
   <mat-card>
     <div class="mat-headline">Enter your desired home information:</div>
     <mat-form-field>
-      <input [(ngModel)]="homePrice" matInput required placeholder="Home Price">
+      <input type="text" [(ngModel)]="homePriceFormatted" (blur)="formatHomePrice($event)" matInput required placeholder="Home Price">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="downPaymentPercent" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
+      <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="formatDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="interestRatePercent" matInput required placeholder="Interest Rate (%)">
+      <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="formatInterestRate($event)" matInput required placeholder="Interest Rate (%)">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="taxesPercent" matInput placeholder="Taxes (%)">
+      <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="insurance" matInput placeholder="Insurance">
+      <input type="text" [(ngModel)]="insuranceFormatted" (blur)="formatInsurance($event)" matInput placeholder="Insurance">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="hoa" matInput placeholder="HOA">
+      <input type="text" [(ngModel)]="hoaFormatted" (blur)="formatHoa($event)" matInput placeholder="HOA">
     </mat-form-field>
     <mat-form-field>
-      <input [(ngModel)]="pmi" matInput placeholder="PMI">
+      <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI">
     </mat-form-field>
     <div *ngIf="calculateMonthlyPayment()">
-        <div class="mat-title" style="margin-bottom: 0">Estimated montly payment: ${{calculateMonthlyPayment() | number:'1.0-0'}}</div>
+        <div class="mat-title" style="margin-bottom: 0">Estimated monthly payment: ${{calculateMonthlyPayment() | number:'1.0-0'}}</div>
       </div>
   </mat-card>
 </div>
