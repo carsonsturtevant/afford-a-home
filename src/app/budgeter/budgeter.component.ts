@@ -46,22 +46,41 @@ export class BudgeterComponent implements OnInit {
   }
 
   suggestedHomePrice(): number {
-    var ir: number = .04/12;
-    //var tax: number = .0075;
-    var ins: number = 77;
-    var hoa: number = 175;
-    var pmi: number = 0;
-    return (
-      (((1 + ir) ** 360) - 1) * .8 * 1.000625
-      * (this.suggestedMonthlyPayment()
-      //- +tax
-      - +ins
-      - +hoa
-      - +pmi)
-      / (ir * ((1 + ir) ** 360))
-      
-    )
+    var ir = .04/12;
+    
+    var ins = 77;
+    var hoa = 175;
+    var pmi = 0;
+    var hp = (
+      (this.suggestedMonthlyPayment() - ins - hoa - pmi)
+      / (
+          (ir * (1 + ir) ** 360)
+          / ((1 + ir) ** 360 - 1)
+      )
+    );
+    var tax = .0075 / 12 * 360 / 1.6;
+    hp = hp * (1 - tax);
+    hp = hp / .8;
+    return hp;
   }
+
+  // suggestedHomePrice(): number {
+  //   var ir: number = .04/12;
+  //   //var tax: number = .0075;
+  //   var ins: number = 77;
+  //   var hoa: number = 175;
+  //   var pmi: number = 0;
+  //   return (
+  //     (((1 + ir) ** 360) - 1) * .8 * 1.000625
+  //     * (this.suggestedMonthlyPayment()
+  //     //- +tax
+  //     - +ins
+  //     - +hoa
+  //     - +pmi)
+  //     / (ir * ((1 + ir) ** 360))
+      
+  //   )
+  // }
 
   suggestedDownPayment(): number {
     return this.suggestedHomePrice() * .2;
