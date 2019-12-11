@@ -26,6 +26,8 @@ export class BudgeterComponent implements OnInit {
   hoaFormatted: string;
   pmi: number;
   pmiFormatted: string;
+
+  suggHomePrice: number;
   
   constructor(private currencyPipe: CurrencyPipe) { }
 
@@ -45,21 +47,31 @@ export class BudgeterComponent implements OnInit {
     else return twentyEightPercent;
   }
 
+  // suggestedHomePrice(): number {
+  //   var ir = .04/12;
+  //   var ins = 77;
+  //   var hoa = 175;
+  //   var pmi = 0;
+  //   var hp = (
+  //     (this.suggestedMonthlyPayment() - ins - hoa - pmi)
+  //     / (((ir * (1 + ir) ** 360)
+  //       / ((1 + ir) ** 360 - 1)) + (.0075/12))
+  //   );
+  //   //var tax = .0075 / 12 * 360 / 1.6;
+  //   //hp = hp * (1 - tax);
+  //   hp = hp / .8;
+  //   //hp = hp + .2*hp;
+  //   return hp;
+  // }
+
   suggestedHomePrice(): number {
-    var ir = .04/12;
-    var ins = 77;
-    var hoa = 175;
-    var pmi = 0;
-    var hp = (
-      (this.suggestedMonthlyPayment() - ins - hoa - pmi)
-      / (((ir * (1 + ir) ** 360)
-        / ((1 + ir) ** 360 - 1)) + (.0075/12))
-    );
-    //var tax = .0075 / 12 * 360 / 1.6;
-    //hp = hp * (1 - tax);
-    hp = hp / .8;
-    //hp = hp + .2*hp;
-    return hp;
+    var suggHp: number = 1;
+    var mp: number = 0;
+    while (mp < this.suggestedMonthlyPayment()) {
+      mp = this.calculateMonthlyPaymentWithVariables(suggHp,.10,.04,.0075,77,175,0);
+      suggHp += 50;
+    }
+    return suggHp;
   }
 
   // suggestedHomePrice(): number {
@@ -84,7 +96,7 @@ export class BudgeterComponent implements OnInit {
     return this.suggestedHomePrice() * .2;
   }
 
-  calculateMonthlyPayment() : number {
+  calculateMonthlyPayment(): number {
     var dp: number = this.calculateDownPaymentAmount();
     var ir: number = this.calculateInterestRateMonthlyPercent();
     var tax: number = this.calculateTaxesAmount();
@@ -107,6 +119,21 @@ export class BudgeterComponent implements OnInit {
          + +hoa
          + +pmi
       ); 
+  }
+
+  calculateMonthlyPaymentWithVariables(hp: number, dp: number, ir: number, tax: number, ins: number, hoa: number, pmi: number): number {
+    dp = dp * hp;
+    ir = ir / 12;
+    tax = tax * hp / 12;
+    return (
+      (hp - dp)
+       * (ir * ((1 + ir) ** 360)) 
+       / (((1 + ir) ** 360) - 1) 
+       + +tax
+       + +ins
+       + +hoa
+       + +pmi
+    ); 
   }
 
   private calculateTaxesAmount(): number {
