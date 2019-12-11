@@ -47,20 +47,18 @@ export class BudgeterComponent implements OnInit {
 
   suggestedHomePrice(): number {
     var ir = .04/12;
-    
     var ins = 77;
     var hoa = 175;
     var pmi = 0;
     var hp = (
       (this.suggestedMonthlyPayment() - ins - hoa - pmi)
-      / (
-          (ir * (1 + ir) ** 360)
-          / ((1 + ir) ** 360 - 1)
-      )
+      / (((ir * (1 + ir) ** 360)
+        / ((1 + ir) ** 360 - 1)) + (.0075/12))
     );
-    var tax = .0075 / 12 * 360 / 1.6;
-    hp = hp * (1 - tax);
+    //var tax = .0075 / 12 * 360 / 1.6;
+    //hp = hp * (1 - tax);
     hp = hp / .8;
+    //hp = hp + .2*hp;
     return hp;
   }
 
