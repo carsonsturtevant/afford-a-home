@@ -18,15 +18,16 @@ export class BudgeterComponent implements OnInit {
   downPaymentPercentFormatted: string;
   interestRatePercent: number;
   interestRatePercentFormatted: string;
-  taxesPercent: number;
-  taxesPercentFormatted: string;
-  insurance: number;
-  insuranceFormatted: string;
-  hoa: number;
-  hoaFormatted: string;
-  pmi: number;
-  pmiFormatted: string;
-
+  taxesPercent: number = .0075;
+  taxesPercentFormatted: string = ".75%";
+  insurance: number = 77;
+  insuranceFormatted: string = "$77";
+  hoa: number = 175;
+  hoaFormatted: string = "$175";
+  pmi: number = 0;
+  pmiFormatted: string = "$0";
+  suggHomePrice: number = 0;
+  
   constructor(private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
@@ -46,17 +47,21 @@ export class BudgeterComponent implements OnInit {
   }
 
   suggestedHomePrice(): number {
+    if (this.downPaymentPercent == null || this.interestRatePercent == null || this.taxesPercent == null || this.insurance == null || this.hoa == null || this.pmi == null) {
+      return undefined;
+    }
     var suggHp: number = 1;
     var mp: number = 0;
     while (mp < this.suggestedMonthlyPayment()) {
-      mp = this.calculateMonthlyPaymentWithVariables(suggHp,.10,.04,.0075,77,175,0);
+      mp = this.calculateMonthlyPaymentWithVariables(suggHp, this.downPaymentPercent, this.interestRatePercent, this.taxesPercent, this.insurance, this.hoa, this.pmi);
       suggHp += 50;
     }
-    return Math.round(suggHp/10) * 10;
+    this.suggHomePrice = suggHp;
+    return suggHp;
   }
 
   suggestedDownPayment(): number {
-    return this.suggestedHomePrice() * .2;
+    return this.suggHomePrice * this.downPaymentPercent;
   }
 
   calculateMonthlyPayment(): number {

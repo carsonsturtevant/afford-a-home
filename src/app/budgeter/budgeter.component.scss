@@ -2,14 +2,6 @@
     margin: 20px;
 }
 
-.inputs-container {
-    display: flex;
-}
-
-.input-item {
-    flex: 1;
-}
-
 .red-text {
     color: red;
 }
@@ -20,4 +12,30 @@
 
 .green {
     color: green;
+}
+
+mat-grid-tile {
+    //background: lightblue;
+}
+
+mat-card {
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+    height: calc(100% - 80px);
+}
+
+mat-card-header {
+    //padding: 20px;
+    font-size: 20pt;
+}
+
+mat-form-field {
+    font-size: 14pt;
+    padding-top: 20px;
+    width: 250px;
+}
+
+.mat-headline {
+    margin-bottom: 0 !important;
 }
