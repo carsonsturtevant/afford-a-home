@@ -1,5 +1,6 @@
 .container {
-    margin: 20px;
+    background-image: url("../../assets/house-background.jpg");
+    //opacity: .5;
 }
 
 .red-text {
@@ -10,8 +11,9 @@
     font-size: 100px !important;
 }
 
-.green {
+.money-text {
     color: green;
+    font-size: 25pt !important
 }
 
 mat-grid-tile {
@@ -23,11 +25,13 @@ mat-card {
     padding: 20px;
     width: 100%;
     height: calc(100% - 80px);
+    opacity: .9;
 }
 
-mat-card-header {
+mat-card-title {
     //padding: 20px;
-    font-size: 20pt;
+    font-size: 18pt !important;
+    text-align: left !important;
 }
 
 mat-form-field {
@@ -38,4 +42,8 @@ mat-form-field {
 
 .mat-headline {
     margin-bottom: 0 !important;
+}
+
+.bold {
+    font-weight: 500 !important;
 }
