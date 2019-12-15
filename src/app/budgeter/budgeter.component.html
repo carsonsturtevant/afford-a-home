@@ -9,7 +9,6 @@
                   <span class="bold">First we'll determine your maximum monthly payment:</span>
               </mat-card-title>
             </mat-card-header>
-              <!-- <div class="mat-headline bold">First we'll determine your maximum monthly payment:</div> -->
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field autocomplete="false">
@@ -34,35 +33,10 @@
             </div>
           </mat-grid-tile>
         </mat-grid-list>
-        <!-- <mat-card-header>
-          Let's start by determining how much house you can afford:
-        </mat-card-header>
-        <mat-card-content>
-          <mat-form-field autocomplete="false">
-            <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="formatSalary($event)" matInput required placeholder="Yearly Salary">
-          </mat-form-field>
-          <mat-form-field>
-            <input 
-              type="text" 
-              [(ngModel)]="monthlyDebtsFormatted" 
-              (blur)="formatDebts($event)" 
-              matInput 
-              placeholder="Monthly Debts" 
-              matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans."
-              matTooltipClass="tooltip">
-          </mat-form-field>
-          <div *ngIf="yearlySalary">
-            <div class="mat-title" style="margin-bottom: 0">You can afford up to <span class="green">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
-            <div class="body-1">*Based on the 28/36 personal finance guideline.</div>
-            <br>
-            <div class="mat-title" style="margin-bottom: 0">Suggested Home Price: ${{suggestedHomePrice() | number:'1.0-0'}}</div>
-            <div class="body-1">*Assumed 20% down payment of ${{suggestedDownPayment() | number:'1.0-0'}}</div>
-          </div>
-        </mat-card-content> -->
       </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="7">
-
+      <div id="chart"></div>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="5" [rowspan]="2" >
       <mat-card *ngIf="yearlySalary">
@@ -70,11 +44,6 @@
           <mat-grid-tile>
             <div class="mat-headline">Now we can determine your maximum home price:</div>
           </mat-grid-tile>
-          <!-- <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="homePriceFormatted" (blur)="formatHomePrice($event)" matInput required placeholder="Home Price">
-            </mat-form-field>
-          </mat-grid-tile> -->
           <mat-grid-tile>
             <mat-form-field>
               <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="formatDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">

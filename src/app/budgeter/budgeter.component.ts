@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import ApexCharts from 'apexcharts';
 
 @Component({
   selector: 'budgeter',
@@ -27,10 +28,102 @@ export class BudgeterComponent implements OnInit {
   pmi: number = 0;
   pmiFormatted: string = "$0";
   suggHomePrice: number = 0;
+  chart: ApexCharts;
   
   constructor(private currencyPipe: CurrencyPipe) { }
 
   ngOnInit() {
+    var options = {
+      chart: {
+          height: 200,
+          type: 'bar',
+          stacked: true,
+          stackType: '100%',
+          fontFamily: 'Montserrat',
+          toolbar: {
+            show: false
+          }
+      },
+      plotOptions: {
+          bar: {
+              horizontal: true,
+          },
+          
+      },
+      colors: ['#EB984E','#EC7063','#52BE80'],
+      stroke: {
+          width: 2,
+          colors: ['#fff']
+      },
+      series: [{
+        name: 'Housing',
+        data: []
+      }, {
+        name: 'Debts',
+        data: []
+      }, {
+        name: 'Remaining',
+        data: []
+      }],
+      title: {
+          text: 'Income Breakdown',
+          style: {
+            fontSize: '20px'
+          }
+      },
+      xaxis: {
+          categories: [""],
+      },
+      tooltip: {
+              y: {
+                  formatter: function(val) {
+                  return Math.floor(val) + "%"
+              }
+          }
+      },
+      fill: {
+          opacity: 1
+          
+      },
+      legend: {
+        show: false,
+        position: 'top',
+        horizontalAlign: 'left',
+        offsetX: 40
+      }
+    }
+
+    this.chart = new ApexCharts(
+      document.querySelector("#chart"),
+      options
+    );
+
+    this.chart.render();
+  }
+
+  renderChart() {
+    this.chart.updateSeries(
+    [{
+      name: 'Housing',
+      data: [this.getHousingPercentage()]
+    }, {
+      name: 'Debts',
+      data: [this.getDebtsPercentage()]
+    }, {
+      name: 'Remaining',
+      data: [100-Math.floor(this.getHousingPercentage()+this.getDebtsPercentage())]
+    }],
+    true);
+    //this.chart.render();
+  }
+
+  getHousingPercentage(): number {
+    return (this.suggestedMonthlyPayment()/(this.yearlySalary/12))*100;
+  }
+
+  getDebtsPercentage(): number {
+    if (!this.monthlyDebts) return 0;
+    return (this.monthlyDebts/(this.yearlySalary/12))*100;
   }
 
   suggestedMonthlyPayment(): number {
@@ -125,11 +218,13 @@ export class BudgeterComponent implements OnInit {
   formatSalary(element) {
     this.yearlySalary = element.target.value.replace(/\D/g,'');
     this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
+    this.renderChart();
   }
 
   formatDebts(element) {
     this.monthlyDebts = element.target.value.replace(/\D/g,'');
     this.monthlyDebtsFormatted = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
+    this.renderChart();
   }
 
   formatHomePrice(element) {
