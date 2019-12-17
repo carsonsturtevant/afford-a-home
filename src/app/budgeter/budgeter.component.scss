@@ -1,6 +1,13 @@
 .container {
+    display: flex;
+    flex-wrap: wrap;
     //background-image: url("../../assets/house-background.jpg");
-    //opacity: .5;
+}
+
+.item {
+    flex-grow: 1;
+    flex-basis: 500px;
+    margin: 10px;
 }
 
 .red-text {
@@ -16,31 +23,18 @@
     font-size: 25pt !important
 }
 
-mat-grid-tile {
-    //background: lightblue;
-}
-
-mat-card {
-    margin: 20px;
-    padding: 20px;
-    width: 100%;
-    height: calc(100% - 80px);
-    opacity: .9;
-}
-
 mat-card-title {
     //padding: 20px;
     font-size: 18pt !important;
     text-align: left !important;
 }
 
-mat-form-field {
-    font-size: 14pt;
-    padding-top: 20px;
-    width: 250px;
+mat-card-content {
+    margin-bottom: 0px !important;
 }
 
-.mat-headline {
+mat-form-field {
+    font-size: 14pt;
     margin-bottom: 0 !important;
 }
 
@@ -48,7 +42,10 @@ mat-form-field {
     font-weight: 500 !important;
 }
 
+.center-text {
+    text-align: center;
+}
+
 #chart {
-    width: 100%;
-    margin: 35px;    
+    width: 100%;  
 }

@@ -122,7 +122,7 @@ export class BudgeterComponent implements OnInit {
   }
 
   getDebtsPercentage(): number {
-    if (!this.monthlyDebts) return 0;
+    if (!this.monthlyDebts) return 0; 
     return (this.monthlyDebts/(this.yearlySalary/12))*100;
   }
 

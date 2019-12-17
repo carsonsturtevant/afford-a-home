@@ -1,87 +1,59 @@
-<div class="container">
-  <mat-grid-list cols="12" rowHeight="28.2vh">
-    <mat-grid-tile [colspan]="5">
-      <mat-card>
-        <mat-grid-list cols="2" rowHeight="33%">
-          <mat-grid-tile [colspan]="2">
-            <mat-card-header>
-              <mat-card-title>
-                  <span class="bold">First we'll determine your maximum monthly payment:</span>
-              </mat-card-title>
-            </mat-card-header>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field autocomplete="false">
-              <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="formatSalary($event)" matInput required placeholder="Yearly Salary">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input 
-                type="text" 
-                [(ngModel)]="monthlyDebtsFormatted" 
-                (blur)="formatDebts($event)" 
-                matInput 
-                placeholder="Monthly Debts" 
-                matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans."
-                matTooltipClass="tooltip">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="2">
-            <div *ngIf="yearlySalary">
-              <div class="" style="margin-bottom: 0">You can afford up to <span class="money-text">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="7">
-      <div id="chart"></div>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="5" [rowspan]="2" >
-      <mat-card *ngIf="yearlySalary">
-        <mat-grid-list cols="1" rowHeight="6vh">
-          <mat-grid-tile>
-            <div class="mat-headline">Now we can determine your maximum home price:</div>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="formatDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="formatInterestRate($event)" matInput required placeholder="Interest Rate (%)">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">
-            </mat-form-field>        
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="insuranceFormatted" (blur)="formatInsurance($event)" matInput placeholder="Insurance / mo">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="hoaFormatted" (blur)="formatHoa($event)" matInput placeholder="HOA / mo">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI / mo">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <div class="mat-title" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggestedHomePrice() | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.</div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="7" [rowspan]="2">
+<div class="">
+  <div class="container">
+    <mat-card class="item">
+      <mat-card-title>
+          <span class="bold">First we'll determine your maximum monthly payment:</span>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field class="item">
+            <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="formatSalary($event)" matInput required placeholder="Yearly Salary">
+          </mat-form-field>
+          <mat-form-field class="item">
+            <input 
+              type="text" 
+              [(ngModel)]="monthlyDebtsFormatted" 
+              (blur)="formatDebts($event)" 
+              matInput 
+              placeholder="Monthly Debts" 
+              matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans."
+              matTooltipClass="tooltip">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <div class="item center-text" *ngIf="yearlySalary" style="margin-bottom: 0">You can afford up to <span class="money-text">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
+    </mat-card>
+    <mat-card class="item" id="chart">
+    </mat-card>
+    <mat-card class="item" *ngIf="yearlySalary">
+      <mat-card-title>
+        <span class="bold">Now we can determine your maximum home price:</span>
+      </mat-card-title>
+      <div class="container">
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="formatDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
+        </mat-form-field>
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="formatInterestRate($event)" matInput required placeholder="Interest Rate (%)">
+        </mat-form-field>
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">
+        </mat-form-field>        
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="insuranceFormatted" (blur)="formatInsurance($event)" matInput placeholder="Insurance / mo">
+        </mat-form-field>
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="hoaFormatted" (blur)="formatHoa($event)" matInput placeholder="HOA / mo">
+        </mat-form-field>
+        <mat-form-field class="item">
+          <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI / mo">
+        </mat-form-field>
+        <div class="item center-text" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggestedHomePrice() | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="item" *ngIf="yearlySalary">
 
-    </mat-grid-tile>
-  </mat-grid-list>
+    </mat-card>
+  </div>
 </div>
