@@ -23,9 +23,9 @@
       </mat-card-content>
       <div class="item center-text" *ngIf="yearlySalary" style="margin-bottom: 0">You can afford up to <span class="money-text">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
     </mat-card>
-    <mat-card class="item" id="chart">
+    <mat-card class="item" id="incomeBreakdownChart">
     </mat-card>
-    <mat-card class="item" *ngIf="yearlySalary">
+    <mat-card class="item">
       <mat-card-title>
         <span class="bold">Now we can determine your maximum home price:</span>
       </mat-card-title>
@@ -52,8 +52,7 @@
         </div>
       </div>
     </mat-card>
-    <mat-card class="item" *ngIf="yearlySalary">
-
+    <mat-card class="item" id="pieChart">
     </mat-card>
   </div>
 </div>
