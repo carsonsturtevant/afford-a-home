@@ -3,11 +3,11 @@ import { CurrencyPipe } from '@angular/common';
 import ApexCharts from 'apexcharts';
 
 @Component({
-  selector: 'budgeter',
-  templateUrl: './budgeter.component.html',
-  styleUrls: ['./budgeter.component.scss']
+  selector: 'affordability',
+  templateUrl: './affordability.component.html',
+  styleUrls: ['./affordability.component.scss']
 })
-export class BudgeterComponent implements OnInit {
+export class AffordabilityComponent implements OnInit {
 
   yearlySalary: number;
   yearlySalaryFormatted: string;

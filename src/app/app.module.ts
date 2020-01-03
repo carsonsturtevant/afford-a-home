@@ -12,13 +12,13 @@ import { MaterialModule } from './modules/material/material.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
-import { BudgeterComponent } from './budgeter/budgeter.component';
+import { AffordabilityComponent } from './affordability/affordability.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
   { path: 'navbar', component: NavbarComponent },
-  { path: 'budgeter', component: BudgeterComponent },
+  { path: 'affordability', component: AffordabilityComponent },
   // {
   //   path: 'heroes',
   //   component: HeroListComponent,
@@ -36,7 +36,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     WelcomeCardComponent,
-    BudgeterComponent,
+    AffordabilityComponent,
     HomepageComponent
   ],
   imports: [

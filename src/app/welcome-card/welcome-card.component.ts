@@ -13,10 +13,4 @@ export class WelcomeCardComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  getStartedButton()
-  {
-    this.router.navigateByUrl('/budgeter');
-  }
-
 }
