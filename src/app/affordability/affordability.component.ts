@@ -29,7 +29,7 @@ export class AffordabilityComponent implements OnInit {
   pmiFormatted: string = "$0";
   suggHomePrice: number = 0;
   incomeBreakdownChart: ApexCharts;
-  pieChart: ApexCharts;
+  paymentChart: ApexCharts;
   
   constructor(private currencyPipe: CurrencyPipe) { }
 
@@ -100,7 +100,12 @@ export class AffordabilityComponent implements OnInit {
     );
     this.incomeBreakdownChart.render();
 
-    var pieChartOptions = {
+    var paymentChartOptions = {
+      plotOptions: {
+        pie: {
+          customScale: 0.9
+        }
+      },
       chart: {
         type: 'donut',
         fontFamily: 'Montserrat',
@@ -109,6 +114,10 @@ export class AffordabilityComponent implements OnInit {
         }
       },
       series: [],
+      stroke: {
+        width: 2,
+        colors: ['#fff']
+      },
       colors: ['#2e4053',
        '#215870',
        '#007285',
@@ -127,11 +136,11 @@ export class AffordabilityComponent implements OnInit {
       }
     };
 
-    this.pieChart = new ApexCharts(
-      document.querySelector("#pieChart"), 
-      pieChartOptions
+    this.paymentChart = new ApexCharts(
+      document.querySelector("#paymentChart"), 
+      paymentChartOptions
     );
-    this.pieChart.render();
+    this.paymentChart.render();
   }
 
   updateIncomeBreakdownChart() {
@@ -150,12 +159,12 @@ export class AffordabilityComponent implements OnInit {
     );
   }
 
-  updatePieChart() {
+  updatePaymentChart() {
     this.suggestedHomePrice();
     if (this.suggHomePrice == 0) return;
     var interest = Math.round(this.interestRatePercent/12*(this.suggHomePrice-this.suggestedDownPayment()));
     var principle = Math.round(this.suggestedMonthlyPayment() - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
-    this.pieChart.updateSeries(
+    this.paymentChart.updateSeries(
       //[],
       [principle, interest, Math.round(this.taxesPercent*this.suggHomePrice/12), Math.round(this.insurance), Math.round(this.hoa), Math.round(this.pmi)],
       true
@@ -264,14 +273,14 @@ export class AffordabilityComponent implements OnInit {
     this.yearlySalary = element.target.value.replace(/\D/g,'');
     this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
     this.updateIncomeBreakdownChart();
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatDebts(element) {
     this.monthlyDebts = element.target.value.replace(/\D/g,'');
     this.monthlyDebtsFormatted = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
     this.updateIncomeBreakdownChart();
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatHomePrice(element) {
@@ -288,7 +297,7 @@ export class AffordabilityComponent implements OnInit {
     if (temp == '')
       this.downPaymentPercentFormatted = '';
     else this.downPaymentPercentFormatted = temp + "%";
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatInterestRate(element) {
@@ -300,7 +309,7 @@ export class AffordabilityComponent implements OnInit {
     if (temp == '')
       this.interestRatePercentFormatted = '';
     else this.interestRatePercentFormatted = temp + "%";
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatTaxes(element) {
@@ -312,25 +321,25 @@ export class AffordabilityComponent implements OnInit {
     if (temp == '')
       this.taxesPercentFormatted = '';
     else this.taxesPercentFormatted = temp + "%";
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatInsurance(element) {
     this.insurance = element.target.value.replace(/\D/g,'');
     this.insuranceFormatted = this.currencyPipe.transform(this.insurance, '$', '$', '1.0-0');
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatHoa(element) {
     this.hoa = element.target.value.replace(/\D/g,'');
     this.hoaFormatted = this.currencyPipe.transform(this.hoa, '$', '$', '1.0-0');
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   formatPmi(element) {
     this.pmi = element.target.value.replace(/\D/g,'');
     this.pmiFormatted = this.currencyPipe.transform(this.pmi, '$', '$', '1.0-0');
-    this.updatePieChart();
+    this.updatePaymentChart();
   }
 
   replaceAll(str: string, searchStr: string, replaceStr: string): string {
