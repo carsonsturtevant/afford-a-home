@@ -51,7 +51,7 @@ export class BudgeterComponent implements OnInit {
           },
           
       },
-      colors: ['#EB984E','#EC7063','#52BE80'],
+      colors: ['#2e4053','#008d8f','#52be80'],
       stroke: {
           width: 2,
           colors: ['#fff']
@@ -109,6 +109,12 @@ export class BudgeterComponent implements OnInit {
         }
       },
       series: [],
+      colors: ['#2e4053',
+       '#215870',
+       '#007285',
+       '#008d8f',
+       '#00a68c',
+       '#52be80'],
       labels: ['Principle', 'Interest', 'Taxes', 'Insurance', 'HOA', 'PMI'],
       legend: {
         position: 'bottom'
@@ -145,8 +151,13 @@ export class BudgeterComponent implements OnInit {
   }
 
   updatePieChart() {
+    this.suggestedHomePrice();
+    if (this.suggHomePrice == 0) return;
+    var interest = Math.round(this.interestRatePercent/12*(this.suggHomePrice-this.suggestedDownPayment()));
+    var principle = Math.round(this.suggestedMonthlyPayment() - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
     this.pieChart.updateSeries(
-      [0, 0, Math.floor(this.taxesPercent*this.homePrice/12), Math.floor(this.insurance), Math.floor(this.hoa), Math.floor(this.pmi)],
+      //[],
+      [principle, interest, Math.round(this.taxesPercent*this.suggHomePrice/12), Math.round(this.insurance), Math.round(this.hoa), Math.round(this.pmi)],
       true
     );
 }
@@ -232,10 +243,10 @@ export class BudgeterComponent implements OnInit {
   }
 
   private calculateTaxesAmount(): number {
-    if (this.taxesPercent === undefined || this.taxesPercent == 0 || this.homePrice == 0) 
+    if (this.taxesPercent === undefined || this.taxesPercent == 0 || this.suggHomePrice == 0) 
       return 0;
     else
-      return this.taxesPercent * this.homePrice / 12;
+      return this.taxesPercent * this.suggHomePrice / 12;
   }
 
   private calculateInterestRateMonthlyPercent(): number {

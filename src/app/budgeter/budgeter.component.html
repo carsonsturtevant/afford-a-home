@@ -48,7 +48,7 @@
         <mat-form-field class="item">
           <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI / mo">
         </mat-form-field>
-        <div class="item center-text" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggestedHomePrice() | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.
+        <div class="item center-text" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggHomePrice | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.
         </div>
       </div>
     </mat-card>
