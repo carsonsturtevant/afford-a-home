@@ -14,11 +14,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { WelcomeCardComponent } from './components/welcome-card/welcome-card.component';
 import { AffordabilityComponent } from './components/affordability/affordability.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { BudgeterComponent } from './components/budgeter/budgeter.component';
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
   { path: 'navbar', component: NavbarComponent },
   { path: 'affordability', component: AffordabilityComponent },
+  { path: 'budgeter', component: BudgeterComponent },
   // {
   //   path: 'heroes',
   //   component: HeroListComponent,
@@ -37,7 +39,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     WelcomeCardComponent,
     AffordabilityComponent,
-    HomepageComponent
+    HomepageComponent,
+    BudgeterComponent
   ],
   imports: [
     BrowserModule,

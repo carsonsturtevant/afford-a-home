@@ -9,12 +9,13 @@
       </div>
     </div>
     <span class="menu-spacer"></span>
-    <div style="float: left; padding-right: 10px;">
+    <div style="float: left; padding-right: 20px;">
       <a *ngIf="monthlyPayment != 0" style="display: block; padding-bottom: 10px">Monthly Payment: ${{monthlyPayment | number:'1.0-0'}}</a>
       <a *ngIf="homePrice != 0" style="display: block">Home Price: ${{homePrice | number:'1.0-0'}}</a>
     </div>
     <div fxShow="true" fxHide.lt-md>
-      <!-- The following menu items will be hidden on both SM and XS screen sizes -->      
+      <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+      <a class="menu-button" routerLink="/budgeter" mat-buttom>Budgeter</a>   
       <a class="menu-button" routerLink="/affordability" mat-button>Affordability</a>
       <a class="menu-button" href="#" mat-button>
         <mat-icon>settings</mat-icon>
