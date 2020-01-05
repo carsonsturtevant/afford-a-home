@@ -10,10 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './modules/material/material.module';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { WelcomeCardComponent } from './welcome-card/welcome-card.component';
-import { AffordabilityComponent } from './affordability/affordability.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { WelcomeCardComponent } from './components/welcome-card/welcome-card.component';
+import { AffordabilityComponent } from './components/affordability/affordability.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 const appRoutes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },

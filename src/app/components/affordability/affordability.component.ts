@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import ApexCharts from 'apexcharts';
+import { AppDataService } from '../../services/app-data.service';
 
 @Component({
   selector: 'affordability',
@@ -31,7 +32,7 @@ export class AffordabilityComponent implements OnInit {
   incomeBreakdownChart: ApexCharts;
   paymentChart: ApexCharts;
   
-  constructor(private currencyPipe: CurrencyPipe) { }
+  constructor(private currencyPipe: CurrencyPipe, private appDataService: AppDataService) { }
 
   ngOnInit() {
     var incomeBreakdownChartOptions = {
@@ -188,9 +189,13 @@ export class AffordabilityComponent implements OnInit {
     var twentyEightPercent: number = (this.yearlySalary * .28 / 12);
 
     thirtySixPercent -= debts;
-    if (thirtySixPercent < twentyEightPercent)
+    if (thirtySixPercent < twentyEightPercent) {
+      this.appDataService.updateMonthlyPayment(thirtySixPercent);
       return thirtySixPercent;
-    else return twentyEightPercent;
+    } else {
+      this.appDataService.updateMonthlyPayment(twentyEightPercent);
+      return twentyEightPercent;
+    }
   }
 
   suggestedHomePrice(): number {
@@ -204,6 +209,7 @@ export class AffordabilityComponent implements OnInit {
       suggHp += 50;
     }
     this.suggHomePrice = suggHp;
+    this.appDataService.updateHomePrice(suggHp);
     return suggHp;
   }
 
@@ -272,6 +278,7 @@ export class AffordabilityComponent implements OnInit {
   formatSalary(element) {
     this.yearlySalary = element.target.value.replace(/\D/g,'');
     this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
+    this.appDataService.updateYearlySalary(this.yearlySalary);
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
