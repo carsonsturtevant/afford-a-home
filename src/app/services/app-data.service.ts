@@ -15,6 +15,7 @@ export class AppDataService {
     this.monthlyPayment = new BehaviorSubject(0);
     this.homePrice = new BehaviorSubject(0);
     this.downPayment = new BehaviorSubject(0);
+    this.yearlySalary = new BehaviorSubject(0);
    }
 
    updateMonthlyPayment(payment: number) {

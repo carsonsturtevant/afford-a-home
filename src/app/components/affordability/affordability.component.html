@@ -21,7 +21,17 @@
           </mat-form-field>
         </div>
       </mat-card-content>
-      <div class="item center-text" *ngIf="yearlySalary" style="margin-bottom: 0">You can afford up to <span class="money-text">${{suggestedMonthlyPayment() | number:'1.0-0'}}</span> per month.</div>
+      <div class="item center-text" *ngIf="yearlySalary">You can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.</div>
+      <div class="item center-text" *ngIf="yearlySalary" style="margin-bottom: -10px; margin-top: 20px;">
+        <mat-slider 
+          #paymentSlider
+          thumbLabel
+          [(ngModel)]="monthlyPayment"
+          (slideend)="onSliderChange(paymentSlider.value)" 
+          min="0"
+          [max]="sliderMax">
+        </mat-slider>
+      </div>
     </mat-card>
     <mat-card class="item" id="incomeBreakdownChart">
     </mat-card>

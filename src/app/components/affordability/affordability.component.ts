@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import ApexCharts from 'apexcharts';
 import { AppDataService } from '../../services/app-data.service';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'affordability',
@@ -16,6 +17,7 @@ export class AffordabilityComponent implements OnInit {
   monthlyDebtsFormatted: string;
   homePrice: number;
   homePriceFormatted: string;
+  monthlyPayment: number;
   downPaymentPercent: number;
   downPaymentPercentFormatted: string;
   interestRatePercent: number;
@@ -31,6 +33,7 @@ export class AffordabilityComponent implements OnInit {
   suggHomePrice: number = 0;
   incomeBreakdownChart: ApexCharts;
   paymentChart: ApexCharts;
+  sliderMax: number = 5000;
   
   constructor(private currencyPipe: CurrencyPipe, private appDataService: AppDataService) { }
 
@@ -164,7 +167,7 @@ export class AffordabilityComponent implements OnInit {
     this.suggestedHomePrice();
     if (this.suggHomePrice == 0) return;
     var interest = Math.round(this.interestRatePercent/12*(this.suggHomePrice-this.suggestedDownPayment()));
-    var principle = Math.round(this.suggestedMonthlyPayment() - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
+    var principle = Math.round(this.monthlyPayment - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
     this.paymentChart.updateSeries(
       //[],
       [principle, interest, Math.round(this.taxesPercent*this.suggHomePrice/12), Math.round(this.insurance), Math.round(this.hoa), Math.round(this.pmi)],
@@ -173,7 +176,7 @@ export class AffordabilityComponent implements OnInit {
 }
 
   getHousingPercentage(): number {
-    return (this.suggestedMonthlyPayment()/(this.yearlySalary/12))*100;
+    return (this.monthlyPayment/(this.yearlySalary/12))*100;
   }
 
   getDebtsPercentage(): number {
@@ -191,9 +194,11 @@ export class AffordabilityComponent implements OnInit {
     thirtySixPercent -= debts;
     if (thirtySixPercent < twentyEightPercent) {
       this.appDataService.updateMonthlyPayment(thirtySixPercent);
+      this.monthlyPayment = thirtySixPercent;
       return thirtySixPercent;
     } else {
       this.appDataService.updateMonthlyPayment(twentyEightPercent);
+      this.monthlyPayment = twentyEightPercent;
       return twentyEightPercent;
     }
   }
@@ -204,7 +209,7 @@ export class AffordabilityComponent implements OnInit {
     }
     var suggHp: number = 1;
     var mp: number = 0;
-    while (mp < this.suggestedMonthlyPayment()) {
+    while (mp < this.monthlyPayment) {
       mp = this.calculateMonthlyPaymentWithVariables(suggHp, this.downPaymentPercent, this.interestRatePercent, this.taxesPercent, this.insurance, this.hoa, this.pmi);
       suggHp += 50;
     }
@@ -276,9 +281,11 @@ export class AffordabilityComponent implements OnInit {
   }
 
   formatSalary(element) {
-    this.yearlySalary = element.target.value.replace(/\D/g,'');
+    this.yearlySalary = Math.round(element.target.value.replace(/\D/g,''));
     this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
     this.appDataService.updateYearlySalary(this.yearlySalary);
+    this.sliderMax = Math.round(this.yearlySalary/12);
+    this.monthlyPayment = this.suggestedMonthlyPayment();
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
@@ -286,6 +293,7 @@ export class AffordabilityComponent implements OnInit {
   formatDebts(element) {
     this.monthlyDebts = element.target.value.replace(/\D/g,'');
     this.monthlyDebtsFormatted = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
+    this.monthlyPayment = this.suggestedMonthlyPayment();
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
@@ -347,6 +355,12 @@ export class AffordabilityComponent implements OnInit {
     this.pmi = element.target.value.replace(/\D/g,'');
     this.pmiFormatted = this.currencyPipe.transform(this.pmi, '$', '$', '1.0-0');
     this.updatePaymentChart();
+  }
+
+  onSliderChange(event) {
+    this.monthlyPayment = event;
+    this.appDataService.updateMonthlyPayment(event);
+    this.updateIncomeBreakdownChart();
   }
 
   replaceAll(str: string, searchStr: string, replaceStr: string): string {
