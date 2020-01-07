@@ -29,7 +29,8 @@
           [(ngModel)]="monthlyPayment"
           (slideend)="onSliderChange(paymentSlider.value)" 
           min="0"
-          [max]="sliderMax">
+          [max]="sliderMax"
+          step="50">
         </mat-slider>
       </div>
     </mat-card>

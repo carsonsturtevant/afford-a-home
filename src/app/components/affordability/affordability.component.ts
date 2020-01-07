@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import ApexCharts from 'apexcharts';
 import { AppDataService } from '../../services/app-data.service';
-import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'affordability',
@@ -194,11 +193,11 @@ export class AffordabilityComponent implements OnInit {
     thirtySixPercent -= debts;
     if (thirtySixPercent < twentyEightPercent) {
       this.appDataService.updateMonthlyPayment(thirtySixPercent);
-      this.monthlyPayment = thirtySixPercent;
+      this.monthlyPayment = Math.round(thirtySixPercent);
       return thirtySixPercent;
     } else {
       this.appDataService.updateMonthlyPayment(twentyEightPercent);
-      this.monthlyPayment = twentyEightPercent;
+      this.monthlyPayment = Math.round(twentyEightPercent);
       return twentyEightPercent;
     }
   }
@@ -285,7 +284,7 @@ export class AffordabilityComponent implements OnInit {
     this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
     this.appDataService.updateYearlySalary(this.yearlySalary);
     this.sliderMax = Math.round(this.yearlySalary/12);
-    this.monthlyPayment = this.suggestedMonthlyPayment();
+    this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
@@ -293,7 +292,7 @@ export class AffordabilityComponent implements OnInit {
   formatDebts(element) {
     this.monthlyDebts = element.target.value.replace(/\D/g,'');
     this.monthlyDebtsFormatted = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
-    this.monthlyPayment = this.suggestedMonthlyPayment();
+    this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
@@ -360,6 +359,7 @@ export class AffordabilityComponent implements OnInit {
   onSliderChange(event) {
     this.monthlyPayment = event;
     this.appDataService.updateMonthlyPayment(event);
+    this.suggestedHomePrice();
     this.updateIncomeBreakdownChart();
   }
 
