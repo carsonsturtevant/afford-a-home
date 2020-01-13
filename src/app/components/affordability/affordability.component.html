@@ -7,13 +7,13 @@
       <mat-card-content>
         <div class="container">
           <mat-form-field class="item">
-            <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="formatSalary($event)" matInput required placeholder="Yearly Salary">
+            <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="updateSalary($event)" matInput required placeholder="Yearly Salary">
           </mat-form-field>
           <mat-form-field class="item">
             <input 
               type="text" 
               [(ngModel)]="monthlyDebtsFormatted" 
-              (blur)="formatDebts($event)" 
+              (blur)="updateDebts($event)" 
               matInput 
               placeholder="Monthly Debts" 
               matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans."
@@ -42,10 +42,10 @@
       </mat-card-title>
       <div class="container">
         <mat-form-field class="item">
-          <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="formatDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
+          <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="updateDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
         </mat-form-field>
         <mat-form-field class="item">
-          <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="formatInterestRate($event)" matInput required placeholder="Interest Rate (%)">
+          <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="updateInterestRate($event)" matInput required placeholder="Interest Rate (%)">
         </mat-form-field>
         <mat-form-field class="item">
           <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">

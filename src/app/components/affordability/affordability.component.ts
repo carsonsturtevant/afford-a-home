@@ -122,11 +122,11 @@ export class AffordabilityComponent implements OnInit {
         colors: ['#fff']
       },
       colors: ['#2e4053',
+       '#008d8f',
+       '#52be80',
        '#215870',
        '#007285',
-       '#008d8f',
-       '#00a68c',
-       '#52be80'],
+       '#00a68c'],
       labels: ['Principle', 'Interest', 'Taxes', 'Insurance', 'HOA', 'PMI'],
       legend: {
         position: 'bottom'
@@ -144,6 +144,19 @@ export class AffordabilityComponent implements OnInit {
       paymentChartOptions
     );
     this.paymentChart.render();
+
+    this.yearlySalary = this.appDataService.yearlySalary.value;
+    this.monthlyDebts = this.appDataService.monthlyDebts.value;
+    this.formatSalary(this.yearlySalary);
+    this.formatDebts(this.monthlyDebts);
+    this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
+    this.updateIncomeBreakdownChart();
+    this.updatePaymentChart();
+    this.downPaymentPercent = this.appDataService.downPayment.value;
+    this.formatDownPayment((this.downPaymentPercent*100).toString());
+    this.interestRatePercent = this.appDataService.interestRate.value;
+    this.formatInterestRate((this.interestRatePercent*100).toString());
+    this.updatePaymentChart();
   }
 
   updateIncomeBreakdownChart() {
@@ -172,7 +185,7 @@ export class AffordabilityComponent implements OnInit {
       [principle, interest, Math.round(this.taxesPercent*this.suggHomePrice/12), Math.round(this.insurance), Math.round(this.hoa), Math.round(this.pmi)],
       true
     );
-}
+  }
 
   getHousingPercentage(): number {
     return (this.monthlyPayment/(this.yearlySalary/12))*100;
@@ -279,9 +292,9 @@ export class AffordabilityComponent implements OnInit {
     return this.downPaymentPercent * this.homePrice;
   }
 
-  formatSalary(element) {
+  updateSalary(element) {
     this.yearlySalary = Math.round(element.target.value.replace(/\D/g,''));
-    this.yearlySalaryFormatted = this.currencyPipe.transform(this.yearlySalary, '$', '$', '1.0-0');
+    this.formatSalary(this.yearlySalary);
     this.appDataService.updateYearlySalary(this.yearlySalary);
     this.sliderMax = Math.round(this.yearlySalary/12);
     this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
@@ -289,12 +302,21 @@ export class AffordabilityComponent implements OnInit {
     this.updatePaymentChart();
   }
 
-  formatDebts(element) {
+  formatSalary(salary: number) {
+    this.yearlySalaryFormatted = this.currencyPipe.transform(salary, '$', '$', '1.0-0');
+  }
+
+  updateDebts(element) {
     this.monthlyDebts = element.target.value.replace(/\D/g,'');
-    this.monthlyDebtsFormatted = this.currencyPipe.transform(this.monthlyDebts, '$', '$', '1.0-0');
+    this.formatDebts(this.monthlyDebts);
+    this.appDataService.updateMonthlyDebts(this.monthlyDebts);
     this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
     this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
+  }
+
+  formatDebts(debts: number) {
+    this.monthlyDebtsFormatted = this.currencyPipe.transform(debts, '$', '$', '1.0-0');
   }
 
   formatHomePrice(element) {
@@ -302,28 +324,42 @@ export class AffordabilityComponent implements OnInit {
     this.homePriceFormatted = this.currencyPipe.transform(this.homePrice, '$', '$', '1.0-0');
   }
 
-  formatDownPayment(element) {
+  updateDownPayment(element) {
     if (element.target.value == '')
       this.downPaymentPercent = undefined;
-    else this.downPaymentPercent = element.target.value.replace(/[^0-9.]/g,'') / 100;
+    else { 
+      this.downPaymentPercent = element.target.value.replace(/[^0-9.]/g,'') / 100;
+      this.appDataService.updateDownPayment(this.downPaymentPercent);
+    }
     
-    var temp = this.replaceAll(element.target.value,"%","");
-    if (temp == '')
-      this.downPaymentPercentFormatted = '';
-    else this.downPaymentPercentFormatted = temp + "%";
+    this.formatDownPayment(element.target.value);
     this.updatePaymentChart();
   }
 
-  formatInterestRate(element) {
+  formatDownPayment(dp) {
+    var temp = this.replaceAll(dp,"%","");
+    if (temp == '')
+      this.downPaymentPercentFormatted = '';
+    else this.downPaymentPercentFormatted = temp + "%";
+  }
+
+  updateInterestRate(element) {
     if (element.target.value == '')
       this.interestRatePercent = undefined;
-    else this.interestRatePercent = element.target.value.replace(/[^0-9.]/g,'') / 100;
+    else {
+      this.interestRatePercent = element.target.value.replace(/[^0-9.]/g,'') / 100;
+      this.appDataService.updateInterestRate(this.interestRatePercent);
+    }
     
-    var temp = this.replaceAll(element.target.value,"%","");
+    this.formatInterestRate(element.target.value);
+    this.updatePaymentChart();
+  }
+
+  formatInterestRate(ir) {
+    var temp = this.replaceAll(ir,"%","");
     if (temp == '')
       this.interestRatePercentFormatted = '';
     else this.interestRatePercentFormatted = temp + "%";
-    this.updatePaymentChart();
   }
 
   formatTaxes(element) {
