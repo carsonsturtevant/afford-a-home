@@ -1,3 +1,26 @@
-<p>
-  budgeter works!
-</p>
+<div class="container">
+  <mat-card class="item">
+    <mat-card-title>
+        <span class="bold">Incomes</span>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-list>
+          <div *ngFor="let income of incomes; index as i">
+            <mat-list-item>
+              <mat-form-field>
+                <input type="text" [(ngModel)]="income.amount" matInput placeholder="{{income.name}}">
+              </mat-form-field>
+              <a mat-button (click)="removeItem(i)">
+                <mat-icon>remove</mat-icon>
+              </a>
+            </mat-list-item>
+          </div>
+          <mat-list-item>
+            <button mat-button (click)="addItem()">Add income</button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

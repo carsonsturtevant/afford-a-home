@@ -14,12 +14,12 @@ export class AppDataService {
   monthlyDebts: BehaviorSubject<number>;
 
   constructor() {
-    this.monthlyPayment = new BehaviorSubject(0);
-    this.homePrice = new BehaviorSubject(0);
+    this.monthlyPayment = new BehaviorSubject(null);
+    this.homePrice = new BehaviorSubject(null);
     this.downPayment = new BehaviorSubject(null);
     this.interestRate = new BehaviorSubject(null);
-    this.yearlySalary = new BehaviorSubject(0);
-    this.monthlyDebts = new BehaviorSubject(0);
+    this.yearlySalary = new BehaviorSubject(null);
+    this.monthlyDebts = new BehaviorSubject(null);
    }
 
    updateMonthlyPayment(payment: number) {
