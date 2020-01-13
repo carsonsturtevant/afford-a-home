@@ -8,19 +8,9 @@ import { AppDataService } from '../../services/app-data.service';
 })
 export class NavbarComponent implements OnInit {
 
-  monthlyPayment: number;
-  homePrice: number;
-
-  constructor(private appDataService: AppDataService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.appDataService.monthlyPayment.subscribe( c => {
-      this.monthlyPayment = c;
-    });
-
-    this.appDataService.homePrice.subscribe( c => {
-      this.homePrice = c;
-    });
   }
 
 }

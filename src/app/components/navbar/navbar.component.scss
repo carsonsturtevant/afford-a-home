@@ -1,10 +1,6 @@
-mat-sidenav-container {
-  min-height: 85vh !important;
-}
-
 mat-toolbar {
-  min-height: 15vh !important;
-  max-height: 15vh !important;
+  min-height: 130px !important;
+  max-height: 130px !important;
   color: white;
 }
 
@@ -40,6 +36,7 @@ a {
   padding: -8px !important;
   margin: 0 auto;
   max-width: 1500px !important;
+  min-height: 50vh;
 }
 
 .nav-bar-item {
