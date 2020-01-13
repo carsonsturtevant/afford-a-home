@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppDataService } from 'src/app/services/app-data.service';
-import { Income } from '../../models/Income';
+import { Income } from '../../models/income';
 
 @Component({
   selector: 'app-budgeter',
