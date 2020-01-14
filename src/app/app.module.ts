@@ -16,23 +16,6 @@ import { AffordabilityComponent } from './components/affordability/affordability
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { BudgeterComponent } from './components/budgeter/budgeter.component';
 
-const appRoutes: Routes = [
-  { path: 'welcome-card', component: WelcomeCardComponent },
-  { path: 'navbar', component: NavbarComponent },
-  { path: 'affordability', component: AffordabilityComponent },
-  { path: 'budgeter', component: BudgeterComponent },
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
-   { path: '**', component: HomepageComponent }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,11 +31,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
-    FormsModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    FormsModule
   ],
   providers: [
     CurrencyPipe
