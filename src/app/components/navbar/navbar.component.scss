@@ -20,7 +20,6 @@ mat-toolbar-row {
 
 .main-title {
   font-size: 22pt;
-  
   font-family: 'Montserrat Subrayada', sans-serif;
 }
 
@@ -31,13 +30,6 @@ mat-toolbar-row {
 a {
   text-decoration: none;
   color: white;
-}
-
-.main-container {
-  padding: -8px !important;
-  margin: 0 auto;
-  max-width: 1500px !important;
-  min-height: 50vh;
 }
 
 .nav-bar-item {
@@ -51,4 +43,14 @@ a {
   margin-left: 10px;
   border-color: white !important;
   border-radius: 0px !important;
+}
+
+.small-screen {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .small-screen {
+    display: block;
+  }
 }

@@ -18,9 +18,19 @@
       </a>
     </div>
   </mat-toolbar-row>
+  <mat-toolbar-row>
+    <mat-sidenav #sidenav style="z-index: 1;">
+      <mat-nav-list>
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Home</a>
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Settings</a>
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="/affordability">Affordability</a>
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="/budgeter">Budgeter</a>   
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container fxFlexFill>
+<!-- <div class="small-screen" style="z-index: 100;" fxFlexFill>
   <mat-sidenav #sidenav>
     <mat-nav-list>
       <a mat-list-item (click)="sidenav.toggle()" href="">Home</a>
@@ -29,7 +39,4 @@
       <a mat-list-item routerLink="/budgeter">Budgeter</a>   
     </mat-nav-list>
   </mat-sidenav>
-  <div class="main-container">
-    <router-outlet></router-outlet>
-  </div>
-</mat-sidenav-container>
+</div> -->
