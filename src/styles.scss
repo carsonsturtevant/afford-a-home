@@ -19,6 +19,10 @@ body {
     margin: 10px;
 }
 
+.menu-spacer {
+    flex: 1 1 auto;
+}
+
 .vertical-center {
     margin: 0;
     position: absolute;
@@ -46,3 +50,16 @@ body {
         display: block !important;
     }
 }
+
+mat-toolbar {
+    min-height: 120px !important;
+    max-height: 120px !important;
+    color: white;
+}
+
+mat-toolbar-row {
+    min-height: inherit;
+    max-height: inherit;
+    max-width: 1500px !important;
+    margin: 0 auto;
+  }

@@ -15,6 +15,7 @@ import { WelcomeCardComponent } from './components/welcome-card/welcome-card.com
 import { AffordabilityComponent } from './components/affordability/affordability.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { BudgeterComponent } from './components/budgeter/budgeter.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BudgeterComponent } from './components/budgeter/budgeter.component';
     WelcomeCardComponent,
     AffordabilityComponent,
     HomepageComponent,
-    BudgeterComponent
+    BudgeterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

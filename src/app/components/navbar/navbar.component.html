@@ -12,16 +12,16 @@
     <div class="large-screen">
       <button class="menu-button" routerLink="/affordability" mat-stroked-button>Affordability</button>
       <button class="menu-button" routerLink="/budgeter" mat-stroked-button>Budgeter</button>   
-      <a class="menu-button" href="#" mat-button>
+      <!-- <a class="menu-button" href="#" mat-button>
         <mat-icon>settings</mat-icon>
-      </a>
+      </a> -->
     </div>
   </mat-toolbar-row>
   <mat-toolbar-row>
     <mat-sidenav class="small-screen" #sidenav style="z-index: 1;">
       <mat-nav-list>
         <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Home</a>
-        <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Settings</a>
+        <!-- <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Settings</a> -->
         <a mat-list-item (click)="sidenav.toggle()" routerLink="/affordability">Affordability</a>
         <a mat-list-item (click)="sidenav.toggle()" routerLink="/budgeter">Budgeter</a>   
       </mat-nav-list>
