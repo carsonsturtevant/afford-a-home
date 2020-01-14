@@ -1,6 +1,6 @@
 mat-toolbar {
-  min-height: 130px !important;
-  max-height: 130px !important;
+  min-height: 120px !important;
+  max-height: 120px !important;
   color: white;
 }
 
@@ -14,7 +14,8 @@ mat-sidenav {
 }
 
 mat-toolbar-row {
-  height: inherit;
+  min-height: inherit;
+  max-height: inherit;
 }
 
 .main-title {
