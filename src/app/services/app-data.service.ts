@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppDataService {
 
+  budgeterFeature: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   monthlyPayment: BehaviorSubject<number>;
   homePrice: BehaviorSubject<number>;
   downPayment: BehaviorSubject<number>;

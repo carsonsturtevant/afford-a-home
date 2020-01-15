@@ -11,7 +11,7 @@
     <span class="menu-spacer"></span>
     <div class="large-screen">
       <button class="menu-button" routerLink="/affordability" mat-stroked-button>Affordability</button>
-      <button class="menu-button" routerLink="/budgeter" mat-stroked-button>Budgeter</button>   
+      <button class="menu-button" routerLink="/budgeter" mat-stroked-button *ngIf="budgeterFeature">Budgeter</button>   
       <!-- <a class="menu-button" href="#" mat-button>
         <mat-icon>settings</mat-icon>
       </a> -->

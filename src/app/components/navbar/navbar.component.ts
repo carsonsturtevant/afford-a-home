@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppDataService } from 'src/app/services/app-data.service';
 
 @Component({
   selector: 'navbar',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  budgeterFeature: boolean = true;
+
+  constructor(appDataService: AppDataService) {
+    this.budgeterFeature = appDataService.budgeterFeature.value;
+   }
 
   ngOnInit() {
   }
