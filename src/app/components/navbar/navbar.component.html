@@ -23,7 +23,7 @@
         <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Home</a>
         <!-- <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Settings</a> -->
         <a mat-list-item (click)="sidenav.toggle()" routerLink="/affordability">Affordability</a>
-        <a mat-list-item (click)="sidenav.toggle()" routerLink="/budgeter">Budgeter</a>   
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="/budgeter" *ngIf="budgeterFeature">Budgeter</a>   
       </mat-nav-list>
     </mat-sidenav>
   </mat-toolbar-row>
