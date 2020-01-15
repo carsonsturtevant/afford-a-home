@@ -81,3 +81,8 @@
         -ms-transform:  translate(0px,0px)  ;
     }
 } 
+
+.first-transition-delay {
+    transition-delay: 500ms;
+    transition-property: margin-right;
+}
