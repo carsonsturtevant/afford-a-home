@@ -3,6 +3,13 @@
     width: 60%;
     line-height: 125%;
     text-align: left;
+    margin-left: 15px;
+}
+
+@media only screen and (max-width: 700px) {
+    .all-text {
+        width: 100%;
+    }
 }
 
 .first-text {
