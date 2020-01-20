@@ -19,6 +19,18 @@ body {
     margin: 10px;
 }
 
+.m-auto {
+    margin: auto;
+}
+
+.mt-80 {
+    margin-top: 80px !important;
+}
+
+.mt-160 {
+    margin-top: 160px !important;
+}
+
 .menu-spacer {
     flex: 1 1 auto;
 }
@@ -69,4 +81,4 @@ mat-toolbar-row {
     max-height: inherit;
     max-width: 1500px !important;
     margin: 0 auto;
-  }
+}
