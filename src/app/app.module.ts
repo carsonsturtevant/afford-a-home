@@ -16,6 +16,7 @@ import { AffordabilityComponent } from './components/affordability/affordability
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { BudgeterComponent } from './components/budgeter/budgeter.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AffordabilityComponent,
     HomepageComponent,
     BudgeterComponent,
-    FooterComponent
+    FooterComponent,
+    EscapeHtmlPipe
   ],
   imports: [
     BrowserModule,
