@@ -33,10 +33,28 @@ export class AffordabilityComponent implements OnInit {
   incomeBreakdownChart: ApexCharts;
   paymentChart: ApexCharts;
   sliderMax: number = 5000;
+  pageIndex: number = 0;
   
   constructor(private currencyPipe: CurrencyPipe, private appDataService: AppDataService) { }
 
   ngOnInit() {
+    this.initiateCharts();
+
+    this.yearlySalary = this.appDataService.yearlySalary.value;
+    this.monthlyDebts = this.appDataService.monthlyDebts.value;
+    this.formatSalary(this.yearlySalary);
+    this.formatDebts(this.monthlyDebts);
+    this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
+    this.updateIncomeBreakdownChart();
+    this.updatePaymentChart();
+    this.downPaymentPercent = this.appDataService.downPayment.value;
+    this.formatDownPayment((this.downPaymentPercent*100).toString());
+    this.interestRatePercent = this.appDataService.interestRate.value;
+    this.formatInterestRate((this.interestRatePercent*100).toString());
+    this.updatePaymentChart();
+  }
+
+  initiateCharts() {
     var incomeBreakdownChartOptions = {
       chart: {
           height: 200,
@@ -144,19 +162,16 @@ export class AffordabilityComponent implements OnInit {
       paymentChartOptions
     );
     this.paymentChart.render();
+  }
 
-    this.yearlySalary = this.appDataService.yearlySalary.value;
-    this.monthlyDebts = this.appDataService.monthlyDebts.value;
-    this.formatSalary(this.yearlySalary);
-    this.formatDebts(this.monthlyDebts);
-    this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
-    this.updateIncomeBreakdownChart();
-    this.updatePaymentChart();
-    this.downPaymentPercent = this.appDataService.downPayment.value;
-    this.formatDownPayment((this.downPaymentPercent*100).toString());
-    this.interestRatePercent = this.appDataService.interestRate.value;
-    this.formatInterestRate((this.interestRatePercent*100).toString());
-    this.updatePaymentChart();
+  pageIndexPlus() {
+    if (this.pageIndex == 3) return;
+    this.pageIndex++;
+  }
+
+  pageIndexMinus() {
+    if (this.pageIndex == 0) return;
+    this.pageIndex--;
   }
 
   updateIncomeBreakdownChart() {
@@ -409,9 +424,4 @@ export class AffordabilityComponent implements OnInit {
       // replace and remove first match, and do another recursirve search/replace
       return this.replaceAll(str.replace(searchStr, replaceStr), searchStr, replaceStr);
   }
-
-  // isNumber(value: string | number): boolean
-  // {
-  //   return ((value != null) && !isNaN(Number(value.toString())));
-  // }
 }
