@@ -29,8 +29,7 @@ export class IncomeBreakdownChartComponent implements OnInit {
       plotOptions: {
           bar: {
               horizontal: true,
-          },
-          
+          }
       },
       colors: ['#2e4053','#008d8f','#52be80'],
       stroke: {
@@ -48,13 +47,21 @@ export class IncomeBreakdownChartComponent implements OnInit {
         data: [100-Math.floor(this.housingPercent+this.debtsPercent)]
       }],
       title: {
-          text: 'Income Breakdown',
-          style: {
-            fontSize: '20px'
-          }
       },
       xaxis: {
-          categories: [""],
+        categories: [""],
+        labels: {
+          show: false
+        },
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        }
+      },
+      yaxis: {
+        show: false
       },
       tooltip: {
               y: {
@@ -64,8 +71,7 @@ export class IncomeBreakdownChartComponent implements OnInit {
           }
       },
       fill: {
-          opacity: 1
-          
+        opacity: 1
       },
       legend: {
         show: false,
