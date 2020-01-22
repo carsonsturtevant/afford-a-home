@@ -92,7 +92,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styling/styles.scss",
               "src/styling/slide_up.scss"
             ]
           }

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "generated-theme.scss";
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 body { 
     margin: 0px !important;
@@ -7,13 +8,13 @@ body {
     font-family: Montserrat; 
 }
 
-.container {
+.flex-container {
     display: flex;
     flex-wrap: wrap;
     //background-image: url("../../assets/house-background.jpg");
 }
 
-.item {
+.flex-item {
     flex-grow: 1;
     flex-basis: 500px;
     margin: 10px;

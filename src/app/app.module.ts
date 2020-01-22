@@ -17,6 +17,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { BudgeterComponent } from './components/budgeter/budgeter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+import { PaymentChartComponent } from './components/payment-chart/payment-chart.component';
+import { IncomeBreakdownChartComponent } from './components/income-breakdown-chart/income-breakdown-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
     HomepageComponent,
     BudgeterComponent,
     FooterComponent,
-    EscapeHtmlPipe
+    EscapeHtmlPipe,
+    PaymentChartComponent,
+    IncomeBreakdownChartComponent
   ],
   imports: [
     BrowserModule,

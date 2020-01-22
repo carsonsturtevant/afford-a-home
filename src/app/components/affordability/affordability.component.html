@@ -7,42 +7,42 @@
       </button>
     </nav>
 
-    <main class="holygrail-content container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 0">
-      <div class="item mt-80">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 0">
+      <div class="flex-item mt-80">
         <div class="bold">Hi! Let's talk about buying your first home.</div>
         <br>
         <div>It all starts with finding an affordable monthly payment that leaves you with plenty of money left over.<br><br>Let's take a look at what affordability really is.</div>
       </div>
-      <div class="item">
-        <img src="assets/house.png">
+      <div class="flex-item">
+        <img src="assets/living-room.png">
       </div>
     </main>
 
-    <main class="holygrail-content container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 1">
-      <div class="item mt-80">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 1">
+      <div class="flex-item mt-80">
         <div class="bold">Goal 1: Keep your home payment under 28% of your income.</div>
         <br>
         <div>Your home payment is:<br>- Principle<br>- Interest<br>- Taxes<br>- Insurance<br>- HOA dues<br>- PMI *</div>
       </div>
-      <div class="item">
+      <div class="flex-item">
         <img src="assets/house.png">
       </div>
     </main>
 
-    <main class="holygrail-content container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 2">
-      <div class="item mt-80">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 2">
+      <div class="flex-item mt-80">
         <div class="bold">Goal 2: Keep your total debts (including home payment) under 36% of your income.</div>
         <br>
         <div>Other debts include things like car payment, student loans, child care, and minimum credit card payments.</div>
       </div>
-      <div class="item">
+      <div class="flex-item">
         <img src="assets/house.png">
       </div>
     </main>
 
-    <main class="holygrail-content container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 3">
-      <div class="item mt-80">
-        <div class="bold mt-80">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 3">
+      <div class="flex-item mt-80">
+        <div class="bold">
           So if your yearly salary is 
             <input type="text" 
             class="bold text"
@@ -63,9 +63,11 @@
           you can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.
         </div>
         <br>
-        <div></div>
+        <div>
+          <income-breakdown-chart [housingPercent]="getHousingPercentage()" [debtsPercent]="getDebtsPercentage()"></income-breakdown-chart>
+        </div>
       </div>
-      <div class="item">
+      <div class="flex-item">
         <img src="assets/house.png">
       </div>
     </main>
@@ -81,21 +83,21 @@
 
 
 
-<!-- <mat-card class="item  mat-elevation-z15" id="incomeBreakdownChart">
+ <!-- <mat-card style="display:none" class="flex-item  mat-elevation-z15" id="incomeBreakdownChart">
 </mat-card>
-<mat-card class="item mat-elevation-z15" id="paymentChart">
+<mat-card style="display:none" class="flex-item mat-elevation-z15" id="paymentChart">
 </mat-card> -->
 
-<!-- <mat-card class="item mat-elevation-z15">
+<!-- <mat-card class="flex-item mat-elevation-z15">
     <mat-card-title>
         <span class="bold">First we'll determine your maximum monthly payment:</span>
     </mat-card-title>
     <mat-card-content>
-      <div class="container">
-        <mat-form-field class="item">
+      <div class="flex-container">
+        <mat-form-field class="flex-item">
           <input type="text" [(ngModel)]="yearlySalaryFormatted" (blur)="updateSalary($event)" matInput required placeholder="Yearly Salary">
         </mat-form-field>
-        <mat-form-field class="item">
+        <mat-form-field class="flex-item">
           <input 
             type="text" 
             [(ngModel)]="monthlyDebtsFormatted" 
@@ -107,8 +109,8 @@
         </mat-form-field>
       </div>
     </mat-card-content>
-    <div class="item center-text" *ngIf="yearlySalary">You can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.</div>
-    <div class="item center-text" *ngIf="yearlySalary" style="margin-bottom: -10px; margin-top: 20px;">
+    <div class="flex-item center-text" *ngIf="yearlySalary">You can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.</div>
+    <div class="flex-item center-text" *ngIf="yearlySalary" style="margin-bottom: -10px; margin-top: 20px;">
       <mat-slider 
         #paymentSlider
         thumbLabel
@@ -120,34 +122,34 @@
       </mat-slider>
     </div>
   </mat-card>
-  <mat-card class="item  mat-elevation-z15" id="incomeBreakdownChart">
+  <mat-card class="flex-item  mat-elevation-z15" id="incomeBreakdownChart">
   </mat-card>
-  <mat-card class="item  mat-elevation-z15">
+  <mat-card class="flex-item  mat-elevation-z15">
     <mat-card-title>
       <span class="bold">Now we can determine your maximum home price:</span>
     </mat-card-title>
-    <div class="container">
-      <mat-form-field class="item">
+    <div class="flex-container">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="updateDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
       </mat-form-field>
-      <mat-form-field class="item">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="updateInterestRate($event)" matInput required placeholder="Interest Rate (%)">
       </mat-form-field>
-      <mat-form-field class="item">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">
       </mat-form-field>        
-      <mat-form-field class="item">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="insuranceFormatted" (blur)="formatInsurance($event)" matInput placeholder="Insurance / mo">
       </mat-form-field>
-      <mat-form-field class="item">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="hoaFormatted" (blur)="formatHoa($event)" matInput placeholder="HOA / mo">
       </mat-form-field>
-      <mat-form-field class="item">
+      <mat-form-field class="flex-item">
         <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI / mo">
       </mat-form-field>
-      <div class="item center-text" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggHomePrice | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.
+      <div class="flex-item center-text" style="margin-bottom: 0">Estimated home price: <span class="money-text">${{suggHomePrice | number:'1.0-0'}}</span> with ${{suggestedDownPayment() | number:'1.0-0'}} down.
       </div>
     </div>
   </mat-card>
-  <mat-card class="item mat-elevation-z15" id="paymentChart">
+  <mat-card class="flex-item mat-elevation-z15" id="paymentChart">
   </mat-card> -->

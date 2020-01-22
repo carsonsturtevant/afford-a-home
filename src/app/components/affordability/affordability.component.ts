@@ -45,8 +45,7 @@ export class AffordabilityComponent implements OnInit {
     this.formatSalary(this.yearlySalary);
     this.formatDebts(this.monthlyDebts);
     this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
-    this.updateIncomeBreakdownChart();
-    this.updatePaymentChart();
+    //this.updatePaymentChart();
     this.downPaymentPercent = this.appDataService.downPayment.value;
     this.formatDownPayment((this.downPaymentPercent*100).toString());
     this.interestRatePercent = this.appDataService.interestRate.value;
@@ -55,71 +54,8 @@ export class AffordabilityComponent implements OnInit {
   }
 
   initiateCharts() {
-    var incomeBreakdownChartOptions = {
-      chart: {
-          height: 200,
-          type: 'bar',
-          stacked: true,
-          stackType: '100%',
-          fontFamily: 'Montserrat',
-          toolbar: {
-            show: false
-          }
-      },
-      plotOptions: {
-          bar: {
-              horizontal: true,
-          },
-          
-      },
-      colors: ['#2e4053','#008d8f','#52be80'],
-      stroke: {
-          width: 2,
-          colors: ['#fff']
-      },
-      series: [{
-        name: 'Housing',
-        data: []
-      }, {
-        name: 'Debts',
-        data: []
-      }, {
-        name: 'Remaining',
-        data: []
-      }],
-      title: {
-          text: 'Income Breakdown',
-          style: {
-            fontSize: '20px'
-          }
-      },
-      xaxis: {
-          categories: [""],
-      },
-      tooltip: {
-              y: {
-                  formatter: function(val) {
-                  return Math.floor(val) + "%"
-              }
-          }
-      },
-      fill: {
-          opacity: 1
-          
-      },
-      legend: {
-        show: false,
-        position: 'top',
-        horizontalAlign: 'left',
-        offsetX: 40
-      }
-    }
 
-    this.incomeBreakdownChart = new ApexCharts(
-      document.querySelector("#incomeBreakdownChart"),
-      incomeBreakdownChartOptions
-    );
-    this.incomeBreakdownChart.render();
+    //this.incomeBreakdownChart.render();
 
     var paymentChartOptions = {
       plotOptions: {
@@ -161,7 +97,7 @@ export class AffordabilityComponent implements OnInit {
       document.querySelector("#paymentChart"), 
       paymentChartOptions
     );
-    this.paymentChart.render();
+    //this.paymentChart.render();
   }
 
   pageIndexPlus() {
@@ -172,22 +108,6 @@ export class AffordabilityComponent implements OnInit {
   pageIndexMinus() {
     if (this.pageIndex == 0) return;
     this.pageIndex--;
-  }
-
-  updateIncomeBreakdownChart() {
-    this.incomeBreakdownChart.updateSeries(
-      [{
-        name: 'Housing',
-        data: [this.getHousingPercentage()]
-      }, {
-        name: 'Debts',
-        data: [this.getDebtsPercentage()]
-      }, {
-        name: 'Remaining',
-        data: [100-Math.floor(this.getHousingPercentage()+this.getDebtsPercentage())]
-      }],
-      true
-    );
   }
 
   updatePaymentChart() {
@@ -313,7 +233,6 @@ export class AffordabilityComponent implements OnInit {
     this.appDataService.updateYearlySalary(this.yearlySalary);
     this.sliderMax = Math.round(this.yearlySalary/12);
     this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
-    this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
 
@@ -326,7 +245,6 @@ export class AffordabilityComponent implements OnInit {
     this.formatDebts(this.monthlyDebts);
     this.appDataService.updateMonthlyDebts(this.monthlyDebts);
     this.monthlyPayment = Math.round(this.suggestedMonthlyPayment());
-    this.updateIncomeBreakdownChart();
     this.updatePaymentChart();
   }
 
@@ -411,7 +329,6 @@ export class AffordabilityComponent implements OnInit {
     this.monthlyPayment = event;
     this.appDataService.updateMonthlyPayment(event);
     this.suggestedHomePrice();
-    this.updateIncomeBreakdownChart();
   }
 
   replaceAll(str: string, searchStr: string, replaceStr: string): string {

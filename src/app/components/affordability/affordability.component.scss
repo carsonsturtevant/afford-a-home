@@ -73,6 +73,6 @@ img {
     width: 95%;
 }
 
-.item:first-child > span { margin-right: auto; }
+.flex-item:first-child > span { margin-right: auto; }
 
-.item:last-child  > span { margin-left: auto;  }
+.flex-item:last-child  > span { margin-left: auto;  }
