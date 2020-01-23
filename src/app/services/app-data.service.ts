@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +8,14 @@ export class AppDataService {
 
   budgeterFeature: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  monthlyPayment: BehaviorSubject<number>;
-  homePrice: BehaviorSubject<number>;
-  downPayment: BehaviorSubject<number>;
-  interestRate: BehaviorSubject<number>;
-  yearlySalary: BehaviorSubject<number>;
-  monthlyDebts: BehaviorSubject<number>;
+  monthlyPayment: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+  homePrice: BehaviorSubject<number> = new BehaviorSubject(null);
+  downPayment: BehaviorSubject<number> = new BehaviorSubject(null);
+  interestRate: BehaviorSubject<number> = new BehaviorSubject(null);
+  yearlySalary: BehaviorSubject<number> = new BehaviorSubject(null);
+  monthlyDebts: BehaviorSubject<number> = new BehaviorSubject(null);
 
   constructor() {
-    this.monthlyPayment = new BehaviorSubject(null);
-    this.homePrice = new BehaviorSubject(null);
-    this.downPayment = new BehaviorSubject(null);
-    this.interestRate = new BehaviorSubject(null);
-    this.yearlySalary = new BehaviorSubject(null);
-    this.monthlyDebts = new BehaviorSubject(null);
    }
 
    updateMonthlyPayment(payment: number) {

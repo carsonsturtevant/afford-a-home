@@ -9,12 +9,17 @@ import { AppDataService } from 'src/app/services/app-data.service';
 export class NavbarComponent implements OnInit {
 
   budgeterFeature: boolean = true;
+  payment: number = null;
 
-  constructor(appDataService: AppDataService) {
+  constructor(private appDataService: AppDataService) {
     this.budgeterFeature = appDataService.budgeterFeature.value;
-   }
+    this.appDataService.monthlyPayment.subscribe((item) => {
+      this.payment = item;
+    });
+  }
 
   ngOnInit() {
+
   }
 
 }

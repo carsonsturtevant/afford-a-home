@@ -35,3 +35,12 @@ a {
   border-color: white !important;
   border-radius: 0px !important;
 }
+
+.mat-stroked-button[disabled] {
+  color: gray;
+}
+
+.active-route {
+  background-color: #fff;
+  color: #2e4053;
+}

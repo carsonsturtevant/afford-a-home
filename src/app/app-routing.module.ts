@@ -9,7 +9,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 const routes: Routes = [
   { path: 'welcome-card', component: WelcomeCardComponent },
   { path: 'navbar', component: NavbarComponent },
-  { path: 'affordability', component: AffordabilityComponent },
+  { path: 'payment', component: AffordabilityComponent },
   { path: 'budgeter', component: BudgeterComponent },
   // {
   //   path: 'heroes',

@@ -10,8 +10,10 @@
     </div>
     <span class="menu-spacer"></span>
     <div class="large-screen">
-      <button class="menu-button" routerLink="/affordability" mat-stroked-button>Affordability</button>
-      <button class="menu-button" routerLink="/budgeter" mat-stroked-button *ngIf="budgeterFeature">Budgeter</button>   
+      <a disabled class="menu-button">What </a>
+      <button class="menu-button" routerLink="/payment" routerLinkActive="active-route" mat-stroked-button>Payment</button>
+      <button class="menu-button" routerLink="/budgeter" routerLinkActive="active-route" mat-stroked-button *ngIf="budgeterFeature" [disabled]="payment == 0 || payment == null">Budgeter</button>
+      <a disabled class="menu-button"> can I afford?</a>
       <!-- <a class="menu-button" href="#" mat-button>
         <mat-icon>settings</mat-icon>
       </a> -->
@@ -22,7 +24,7 @@
       <mat-nav-list>
         <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Home</a>
         <!-- <a mat-list-item (click)="sidenav.toggle()" routerLink="#">Settings</a> -->
-        <a mat-list-item (click)="sidenav.toggle()" routerLink="/affordability">Affordability</a>
+        <a mat-list-item (click)="sidenav.toggle()" routerLink="/payment">Payment</a>
         <a mat-list-item (click)="sidenav.toggle()" routerLink="/budgeter" *ngIf="budgeterFeature">Budgeter</a>   
       </mat-nav-list>
     </mat-sidenav>
