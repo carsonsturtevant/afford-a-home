@@ -2,16 +2,20 @@
     color: red;
 }
 
-.mat-tooltip.tooltip {
-    font-size: 100px !important;
-}
-
 .text {
     font-size: 26pt !important;
 }
 
 .money-text {
     color: green !important;
+}
+
+.bold {
+    font-weight: 700 !important;
+}
+
+.center-text {
+    text-align: center;
 }
 
 mat-card-title {
@@ -31,12 +35,15 @@ mat-form-field {
     text-align: center !important;
 }
 
-.bold {
-    font-weight: 700 !important;
+input {
+    font-family: montserrat;
+    width: 200px;
 }
 
-.center-text {
-    text-align: center;
+img {
+    margin: 0 auto !important;
+    display: inherit;
+    width: 95%;
 }
 
 .holygrail {
@@ -60,17 +67,6 @@ mat-form-field {
 
 .holygrail-back {
     order: -1;
-}
-
-input {
-    font-family: montserrat;
-    width: 200px;
-}
-
-img {
-    margin: 0 auto !important;
-    display: inherit;
-    width: 95%;
 }
 
 .flex-item:first-child > span { margin-right: auto; }

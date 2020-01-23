@@ -45,7 +45,8 @@
         <div class="bold">
           So if your yearly salary is 
             <input type="text" 
-            class="bold text"
+            class="bold"
+            style="font-size: 23pt !important"
             [(ngModel)]="yearlySalaryFormatted" 
             (blur)="updateSalary($event)" 
             matInput 
@@ -53,13 +54,12 @@
             placeholder="$0">
           and your other debts are
           <input type="text" 
-          class="bold text"
+          class="bold"
+          style="font-size: 23pt !important"
           [(ngModel)]="monthlyDebtsFormatted" 
           (blur)="updateDebts($event)" 
           matInput 
-          placeholder="$0" 
-          matTooltip="Enter the minimum amount you owe every month for things like auto loans, child care, credit card debt, and student loans." 
-          matTooltipClass="tooltip"> 
+          placeholder="$0"> 
           you can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.
         </div>
         <br>
