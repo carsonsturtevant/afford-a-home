@@ -51,6 +51,7 @@ export class AffordabilityComponent implements OnInit {
     this.interestRatePercent = this.appDataService.interestRate.value;
     this.formatInterestRate((this.interestRatePercent*100).toString());
     this.updatePaymentChart();
+    this.pageIndex = this.appDataService.affordabilityPageIndex.value;
   }
 
   initiateCharts() {
@@ -103,11 +104,13 @@ export class AffordabilityComponent implements OnInit {
   pageIndexPlus() {
     if (this.pageIndex == 3) return;
     this.pageIndex++;
+    this.appDataService.updateAffordabilityPageIndex(this.pageIndex);
   }
 
   pageIndexMinus() {
     if (this.pageIndex == 0) return;
     this.pageIndex--;
+    this.appDataService.updateAffordabilityPageIndex(this.pageIndex);
   }
 
   updatePaymentChart() {

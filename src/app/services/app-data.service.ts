@@ -14,6 +14,7 @@ export class AppDataService {
   interestRate: BehaviorSubject<number> = new BehaviorSubject(null);
   yearlySalary: BehaviorSubject<number> = new BehaviorSubject(null);
   monthlyDebts: BehaviorSubject<number> = new BehaviorSubject(null);
+  affordabilityPageIndex: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor() {
    }
@@ -40,5 +41,9 @@ export class AppDataService {
 
    updateMonthlyDebts(debts: number) {
      this.monthlyDebts.next(debts);
+   }
+
+   updateAffordabilityPageIndex(index: number) {
+     this.affordabilityPageIndex.next(index);
    }
 }
