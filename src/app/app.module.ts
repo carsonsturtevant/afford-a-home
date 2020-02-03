@@ -19,6 +19,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { PaymentChartComponent } from './components/payment-chart/payment-chart.component';
 import { IncomeBreakdownChartComponent } from './components/income-breakdown-chart/income-breakdown-chart.component';
+import { HomePriceCalculatorComponent } from './components/home-price-calculator/home-price-calculator.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { IncomeBreakdownChartComponent } from './components/income-breakdown-cha
     FooterComponent,
     EscapeHtmlPipe,
     PaymentChartComponent,
-    IncomeBreakdownChartComponent
+    IncomeBreakdownChartComponent,
+    HomePriceCalculatorComponent
   ],
   imports: [
     BrowserModule,
