@@ -1,3 +1,47 @@
-<p>
-  home-price-calculator works!
-</p>
+<div class="flex-container pt-4">
+  <mat-card class="flex-item">
+    <mat-card-title>
+      <div class="bold text-center">With your estimated payment of ${{payment | number:'1.0-0'}} you are able to afford up to ${{suggestedHomePrice() | number:'1.0-0'}} with ${{suggestedDownPayment() | number:'1.0-0'}} down.</div>
+  </mat-card-title>
+  <mat-card-content>
+    <div class="flex-container">
+     
+    </div>
+  </mat-card-content>
+  </mat-card>
+</div>
+
+<div class="flex-container">
+  <mat-card class="flex-item mat-elevation-z2">
+    <div class="flex-container">
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="downPaymentPercentFormatted" (blur)="updateDownPayment($event)" value="downPaymentPercent * 100" matInput required placeholder="Down Payment (%)">
+      </mat-form-field>
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="interestRatePercentFormatted" (blur)="updateInterestRate($event)" matInput required placeholder="Interest Rate (%)">
+      </mat-form-field>
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="taxesPercentFormatted" (blur)="formatTaxes($event)" matInput placeholder="Taxes (%)">
+      </mat-form-field>        
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="insuranceFormatted" (blur)="formatInsurance($event)" matInput placeholder="Insurance / mo">
+      </mat-form-field>
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="hoaFormatted" (blur)="formatHoa($event)" matInput placeholder="HOA / mo">
+      </mat-form-field>
+      <mat-form-field class="flex-item">
+        <input type="text" [(ngModel)]="pmiFormatted" (blur)="formatPmi($event)" matInput placeholder="PMI / mo">
+      </mat-form-field>
+    </div>
+  </mat-card>
+  <mat-card class="flex-item mat-elevation-z2">
+    <payment-chart
+      [suggHomePrice]="suggestedHomePrice()"
+      [hoa]="hoa"
+      [pmi]="pmi"
+      [taxesPercent]="taxesPercent"
+      [insurance]="insurance"
+      style="max-height: 300px !important">
+    </payment-chart>
+  </mat-card>
+</div>
