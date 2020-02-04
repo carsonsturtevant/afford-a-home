@@ -14,7 +14,7 @@
       <button class="menu-button" routerLink="/payment" routerLinkActive="active-route"
         mat-stroked-button>Payment</button>
       <button class="menu-button" routerLink="/home-price-calculator" routerLinkActive="active-route"
-        mat-stroked-button>Home Price</button>
+        mat-stroked-button [disabled]="payment == 0 || payment == null">Home Price</button>
       <button class="menu-button" routerLink="/budgeter" routerLinkActive="active-route" mat-stroked-button
         *ngIf="budgeterFeature" [disabled]="payment == 0 || payment == null">Budgeter</button>
       <a disabled class="menu-button"> can I afford?</a>
