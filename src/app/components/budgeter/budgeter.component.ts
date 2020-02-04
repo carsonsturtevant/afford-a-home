@@ -11,7 +11,7 @@ export class BudgeterComponent implements OnInit {
   incomes: Income[];
 
   constructor(appDataService: AppDataService) {
-    this.incomes = [new Income("Yearly Salary", appDataService.yearlySalary.value), new Income("Yearly Bonus", null)];
+    this.incomes = [new Income('Yearly Salary', appDataService.yearlySalary.value), new Income('Yearly Bonus', null)];
   }
 
   ngOnInit() {

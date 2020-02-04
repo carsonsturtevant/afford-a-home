@@ -1,15 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { AppDataService } from 'src/app/services/app-data.service';
 import ApexCharts from 'apexcharts';
 
 @Component({
-  selector: 'payment-chart',
+  selector: 'app-payment-chart',
   templateUrl: './payment-chart.component.html',
   styleUrls: ['./payment-chart.component.scss']
 })
-export class PaymentChartComponent implements OnInit {
+export class PaymentChartComponent implements OnInit, OnChanges {
 
-  firstLoad: boolean = true;
+  firstLoad = true;
   @Input() monthlyPayment: number;
   @Input() interestRatePercent: number;
   @Input() suggestedDownPayment: number;
@@ -27,7 +27,7 @@ export class PaymentChartComponent implements OnInit {
     this.interestRatePercent = this.appDataService.interestRate.value;
     this.suggestedDownPayment = this.appDataService.downPayment.value;
 
-    var paymentChartOptions = {
+    const paymentChartOptions = {
       plotOptions: {
         pie: {
           customScale: 0.9
@@ -47,11 +47,11 @@ export class PaymentChartComponent implements OnInit {
         colors: ['#fff']
       },
       colors: ['#2e4053',
-       '#008d8f',
-       '#52be80',
-       '#215870',
-       '#007285',
-       '#00a68c'],
+        '#008d8f',
+        '#52be80',
+        '#215870',
+        '#007285',
+        '#00a68c'],
       labels: ['Principle', 'Interest', 'Taxes', 'Insurance', 'HOA', 'PMI'],
       legend: {
         position: 'bottom'
@@ -65,7 +65,7 @@ export class PaymentChartComponent implements OnInit {
     };
 
     this.paymentChart = new ApexCharts(
-      document.querySelector("#paymentChart"), 
+      document.querySelector('#paymentChart'),
       paymentChartOptions
     );
     this.paymentChart.render();
@@ -77,20 +77,26 @@ export class PaymentChartComponent implements OnInit {
       return;
     }
 
-    if (this.suggHomePrice == 0) return;
-    var interest = Math.round(this.interestRatePercent/12*(this.suggHomePrice-this.suggestedDownPayment));
-    var principle = Math.round(this.monthlyPayment - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
-    this.paymentChart.updateSeries(
-      //[],
-      [principle, interest, Math.round(this.taxesPercent*this.suggHomePrice/12), Math.round(this.insurance), Math.round(this.hoa), Math.round(this.pmi)],
+    if (this.suggHomePrice === 0) { return; }
+    const interest = Math.round(this.interestRatePercent / 12 * (this.suggHomePrice - this.suggestedDownPayment));
+    const principle = Math.round(this.monthlyPayment - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
+    this.paymentChart.updateSeries([
+      principle,
+      interest,
+      Math.round(this.taxesPercent * this.suggHomePrice / 12),
+      Math.round(this.insurance),
+      Math.round(this.hoa),
+      Math.round(this.pmi)
+    ],
       true
     );
   }
 
   private calculateTaxesAmount(): number {
-    if (this.taxesPercent === undefined || this.taxesPercent == 0 || this.suggHomePrice == 0) 
+    if (this.taxesPercent === undefined || this.taxesPercent === 0 || this.suggHomePrice === 0) {
       return 0;
-    else
+    } else {
       return this.taxesPercent * this.suggHomePrice / 12;
+    }
   }
 }

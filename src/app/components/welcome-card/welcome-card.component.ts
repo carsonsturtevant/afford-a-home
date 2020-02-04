@@ -3,7 +3,7 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'welcome-card',
+  selector: 'app-welcome-card',
   templateUrl: './welcome-card.component.html',
   styleUrls: ['./welcome-card.component.scss']
 })

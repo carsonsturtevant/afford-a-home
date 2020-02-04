@@ -30,9 +30,9 @@ export class HomePriceCalculatorComponent implements OnInit {
 
   ngOnInit() {
     this.payment = this.appDataService.monthlyPayment.value;
-    this.downPaymentPercent = this.appDataService.downPayment.value;
+    this.downPaymentPercent = this.appDataService.downPayment.value ? this.appDataService.downPayment.value : .05;
     this.formatDownPayment((this.downPaymentPercent * 100).toString());
-    this.interestRatePercent = this.appDataService.interestRate.value;
+    this.interestRatePercent = this.appDataService.interestRate.value ? this.appDataService.interestRate.value : .04;
     this.formatInterestRate((this.interestRatePercent * 100).toString());
   }
 
