@@ -9,7 +9,6 @@ import ApexCharts from 'apexcharts';
 })
 export class PaymentChartComponent implements OnInit, OnChanges {
 
-  firstLoad = true;
   @Input() monthlyPayment: number;
   @Input() interestRatePercent: number;
   @Input() suggestedDownPayment: number;
@@ -69,14 +68,14 @@ export class PaymentChartComponent implements OnInit, OnChanges {
       paymentChartOptions
     );
     this.paymentChart.render();
+    this.updateChart();
   }
 
   ngOnChanges() {
-    if (this.firstLoad) {
-      this.firstLoad = false;
-      return;
-    }
+    this.updateChart();
+  }
 
+  updateChart() {
     if (this.suggHomePrice === 0) { return; }
     const interest = Math.round(this.interestRatePercent / 12 * (this.suggHomePrice - this.suggestedDownPayment));
     const principle = Math.round(this.monthlyPayment - this.hoa - this.pmi - this.calculateTaxesAmount() - this.insurance - interest);
