@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  budgeterFeature: true
+  budgeterFeature: false
 }
 /*
  * For easier debugging in development mode, you can import the following file
