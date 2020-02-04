@@ -63,6 +63,10 @@
       <div class="flex-item">
         <img src="assets/house.png">
       </div>
+      <div class="flex-item text-center h6" *ngIf="monthlyPayment != 0">
+        Now, lets determine an affordable 
+        <button mat-stroked-button color="primary" routerLink="/home-price-calculator">Home Price</button>
+      </div>
     </main>
 
     <aside class="holygrail-forward" *ngIf="pageIndex != 3">
