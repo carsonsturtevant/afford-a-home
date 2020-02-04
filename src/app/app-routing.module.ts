@@ -12,17 +12,8 @@ const routes: Routes = [
   { path: 'navbar', component: NavbarComponent },
   { path: 'payment', component: AffordabilityComponent },
   { path: 'budgeter', component: BudgeterComponent },
-  { path: 'home-price-calculator', component: HomePriceCalculatorComponent},
-  // {
-  //   path: 'heroes',
-  //   component: HeroListComponent,
-  //   data: { title: 'Heroes List' }
-  // },
-  // { path: '',
-  //   redirectTo: '/heroes',
-  //   pathMatch: 'full'
-  // },
-   { path: '**', component: HomepageComponent }
+  { path: 'home-price-calculator', component: HomePriceCalculatorComponent },
+  { path: '**', component: HomepageComponent }
 ];
 
 @NgModule({

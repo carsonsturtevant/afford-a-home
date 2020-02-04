@@ -2,23 +2,25 @@
   <div class="holygrail-body">
 
     <nav class="holygrail-back" *ngIf="pageIndex != 0">
-      <button mat-icon-button color="primary" class="vertical-center" style="margin: auto; padding: 0 !important; line-height: 0 !important;" (click)="pageIndexMinus()">
+      <button mat-icon-button color="primary" class="vertical-center"
+        style="margin: auto; padding: 0 !important; line-height: 0 !important;" (click)="pageIndexMinus()">
         <mat-icon>arrow_back</mat-icon>
       </button>
     </nav>
 
-    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 0">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80" *ngIf="pageIndex == 0">
       <div class="flex-item mt-80">
         <div class="bold">Hi! Let's talk about buying your first home.</div>
         <br>
-        <div>It all starts with finding an affordable monthly payment that leaves you with plenty of money left over.<br><br>Let's take a look at what affordability really is.</div>
+        <div>It all starts with finding an affordable monthly payment that leaves you with plenty of money left
+          over.<br><br>Let's take a look at what affordability really is.</div>
       </div>
       <div class="flex-item">
         <img src="assets/living-room.png">
       </div>
     </main>
 
-    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 1">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80" *ngIf="pageIndex == 1">
       <div class="flex-item mt-80">
         <div class="bold">Goal 1: Keep your home payment under 28% of your income.</div>
         <br>
@@ -29,42 +31,33 @@
       </div>
     </main>
 
-    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 2">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80" *ngIf="pageIndex == 2">
       <div class="flex-item mt-80">
         <div class="bold">Goal 2: Keep your total debts (including home payment) under 36% of your income.</div>
         <br>
-        <div>Your other debts include things like car payment, student loans, child care, and minimum credit card payments.</div>
+        <div>Your other debts include things like car payment, student loans, child care, and minimum credit card
+          payments.</div>
       </div>
       <div class="flex-item">
         <img src="assets/house.png">
       </div>
     </main>
 
-    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80"  *ngIf="pageIndex == 3">
+    <main class="holygrail-content flex-container slide-up-fade-in text m-auto mt-80" *ngIf="pageIndex == 3">
       <div class="flex-item mt-80">
         <div class="bold">
-          So if your yearly salary is 
-            <input type="text" 
-            class="bold"
-            style="font-size: 23pt !important"
-            [(ngModel)]="yearlySalaryFormatted" 
-            (blur)="updateSalary($event)" 
-            matInput 
-            required 
-            placeholder="$0">
+          So if your yearly salary is
+          <input type="text" class="bold" style="font-size: 23pt !important" [(ngModel)]="yearlySalaryFormatted"
+            (blur)="updateSalary($event)" matInput required placeholder="$0">
           and your other debts are
-          <input type="text" 
-          class="bold"
-          style="font-size: 23pt !important"
-          [(ngModel)]="monthlyDebtsFormatted" 
-          (blur)="updateDebts($event)" 
-          matInput 
-          placeholder="$0"> 
+          <input type="text" class="bold" style="font-size: 23pt !important" [(ngModel)]="monthlyDebtsFormatted"
+            (blur)="updateDebts($event)" matInput placeholder="$0">
           you can afford up to <span class="money-text">${{monthlyPayment | number:'1.0-0'}}</span> per month.
         </div>
         <br>
         <div>
-          <income-breakdown-chart [housingPercent]="getHousingPercentage()" [debtsPercent]="getDebtsPercentage()"></income-breakdown-chart>
+          <income-breakdown-chart [housingPercent]="getHousingPercentage()" [debtsPercent]="getDebtsPercentage()">
+          </income-breakdown-chart>
         </div>
       </div>
       <div class="flex-item">
@@ -73,7 +66,8 @@
     </main>
 
     <aside class="holygrail-forward" *ngIf="pageIndex != 3">
-      <button mat-icon-button color="primary" class="vertical-center" style="margin: auto; padding: 0 !important; line-height: 0 !important;" (click)="pageIndexPlus()">
+      <button mat-icon-button color="primary" class="vertical-center"
+        style="margin: auto; padding: 0 !important; line-height: 0 !important;" (click)="pageIndexPlus()">
         <mat-icon>arrow_forward</mat-icon>
       </button>
     </aside>
